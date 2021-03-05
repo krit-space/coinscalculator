@@ -83,6 +83,7 @@ async function returnWorth2(){
     var currentPrice = obj2["market_data"]["current_price"]["usd"];
         
     document.getElementById("displayNetWortInvestedhAmount").value = new Number((currentPrice / previousPrice) * investedAmount);
+    
 
 
     }

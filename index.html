@@ -10,6 +10,16 @@
 
   <script src="js/coin-cal.js"></script>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TTEMLR0GDS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TTEMLR0GDS');
+</script>
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -146,6 +156,15 @@
                   </center>
 
                   <div class="form-group">
+                    <label for="selectCoin">Currency:</label>
+                    <select class="selectCoin form-control" onchange="retrieveCoinDetailsInvest()">
+                    <option value="">Select a coin</option></select>
+                    <small id="selectCoinHelpInline" class="form-text text-muted">In which currency you want to
+                      invest.</small>
+                  </div>
+
+
+                  <div class="form-group">
                     <label for="inputInvestAmount">Amount:</label>
 
                     <div class="col-auto">
@@ -165,13 +184,7 @@
 
                   </div>
 
-                  <div class="form-group">
-                    <label for="selectCoin">Currency:</label>
-                    <select class="selectCoin form-control" onchange="retrieveCoinDetailsInvest()">
-                    <option value="">Select a coin</option></select>
-                    <small id="selectCoinHelpInline" class="form-text text-muted">In which currency you want to
-                      invest.</small>
-                  </div>
+               
 
                   <div class="form-group">
                     <label for="inputForAmount">Desired Amount</label>
@@ -217,6 +230,15 @@
                   </center>
 
                   <div class="form-group">
+                    <label for="selectedCoin">Currency:</label>
+                    <select  class="selectedCoin form-control" onchange="retrieveCoinDetailsInvested()">
+                      <option value="">Select a coin</option></select>
+                    </select>
+                    <small id="selectCoinHelpInline" class="form-text text-muted">In which currency you wanted to
+                      invest.</small>
+                  </div>
+
+                  <div class="form-group">
                     <label for="inputInvestAmount">Amount:</label>
 
                     <div class="col-auto">
@@ -236,14 +258,7 @@
 
                   </div>
 
-                  <div class="form-group">
-                    <label for="selectedCoin">Currency:</label>
-                    <select  class="selectedCoin form-control" onchange="retrieveCoinDetailsInvested()">
-                      <option value="">Select a coin</option></select>
-                    </select>
-                    <small id="selectCoinHelpInline" class="form-text text-muted">In which currency you wanted to
-                      invest.</small>
-                  </div>
+             
 
                   <div class="form-group">
                     <label for="inputPastDate">Date</label>
