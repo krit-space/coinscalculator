@@ -1,39 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Bootstrap Example</title>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>Bootstrap Theme Simply Me</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+  <script src="js/coin-cal.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <style>
+    body {
+      font: 20px Montserrat, sans-serif;
+      line-height: 1.8;
+      color: #f5f6f7;
+    }
+
+    p {
+      font-size: 16px;
+    }
+
+    .margin {
+      margin-bottom: 45px;
+    }
+
+    .bg-1 {
+      background-color: #1abc9c;
+      /* Green */
+      color: #474e5d;
+    }
+
+    .bg-2 {
+      background-color: #474e5d;
+      /* Dark Blue */
+      color: #ffffff;
+    }
+
+    .bg-3 {
+      background-color: #ffffff;
+      /* White */
+      color: #555555;
+    }
+
+    .bg-4 {
+      background-color: #2f2f2f;
+      /* Black Gray */
+      color: #fff;
+    }
+
+    .container-fluid {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
+    .navbar {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 12px;
+      letter-spacing: 5px;
+    }
+
+    .navbar-nav li a:hover {
+      color: #1abc9c !important;
+    }
+
+    label {
+      color: blue;
+    }
+
+    small {
+      font-size: small;
+      text-align: right;
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="jumbotron text-center">
-  <h1>My First Bootstrap Page</h1>
-  <p>Resize this responsive page to see the effect!</p> 
-</div>
-  
-<div class="container">
-  <div class="row">
-    <div class="col-sm-4">
-      <h3>Column 1</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Coin Calculator - Caculate your Net worth of cryptos</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+      aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+      </ul>
+      <span class="navbar-text">
+        Navbar text with an inline element
+      </span>
     </div>
-    <div class="col-sm-4">
-      <h3>Column 2</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
-    </div>
-    <div class="col-sm-4">
-      <h3>Column 3</h3>        
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+  </nav>
+
+
+  <!-- First Container -->
+  <div class="container-fluid bg-1 text-left">
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+      </div>
+      <div class="col-sm-4">
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header" id="headingOne" style="background-color: lightblue;">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                  aria-controls="collapseOne">
+                  #If I invest now!
+                </button>
+              </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+              <div class="card-body">
+                <form>
+                  <center>
+                    <img src="bird.png" class="img-responsive img-circle" style="display:inline" alt="Bird" width="50"
+                      height="50" id="currencyImage"><br />
+                    <span class="currentPrice"></span>
+                  </center>
+
+                  <div class="form-group">
+                    <label for="inputInvestAmount">Amount:</label>
+
+                    <div class="col-auto">
+                      <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                      <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">$</div>
+                        </div>
+                        <input type="number" class="form-control" id="inputInvestAmount"
+                          aria-describedby="investAmountHelp" placeholder="0.00">
+                      </div>
+                      <small id="inputInvestAmount" class="form-text text-muted">
+                        Amount you want to invest now.
+                      </small>
+                    </div>
+
+
+                  </div>
+
+                  <div class="form-group">
+                    <label for="selectCoin">Currency:</label>
+                    <select class="selectCoin form-control" onchange="retrieveCoinDetailsInvest()">
+                    <option value="">Select a coin</option></select>
+                    <small id="selectCoinHelpInline" class="form-text text-muted">In which currency you want to
+                      invest.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputForAmount">Desired Amount</label>
+                    <input type="number" class="form-control" id="inputDesiredAmount"
+                      aria-describedby="investAmountHelp" placeholder="Enter Amount" />
+                    <small id="inputDesiredAmountHelp" class="form-text text-muted">Price of coin expected.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputForAmount">Net Worth will be</label>
+                      <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">$</div>
+                        </div>
+                        <input type="number" class="form-control" id="displayNetWorthAmount"
+                          aria-describedby="investAmountHelp" placeholder="0.00" disabled>
+                      </div>
+                    <small id="netAmountHelp" class="form-text text-muted">Net worth of amount invested.</small>
+                  </div>
+                <center>
+                  <input type="button" value="Calculate" onclick="returnWorth()" />
+                </center>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo" style="background-color: lightcyan;">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                  aria-expanded="false" aria-controls="collapseTwo" onclick="fetchData()">
+                  #If I invested!
+                </button>
+              </h5>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+              <div class="card-body">
+                <form >
+                  <center>
+                    <img src="bird.png" class="img-responsive img-circle" style="display:inline" alt="Bird" width="50"
+                      height="50" id="currencyImage2"><br />
+                    <span class="currentPrice2"></span>
+                  </center>
+
+                  <div class="form-group">
+                    <label for="inputInvestAmount">Amount:</label>
+
+                    <div class="col-auto">
+                      <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                      <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">$</div>
+                        </div>
+                        <input type="number" class="form-control" id="inputInvestedAmount"
+                          aria-describedby="investAmountHelp" placeholder="0.00">
+                      </div>
+                      <small id="inputInvestAmount" class="form-text text-muted">
+                        Amount you had invested.
+                      </small>
+                    </div>
+
+
+                  </div>
+
+                  <div class="form-group">
+                    <label for="selectedCoin">Currency:</label>
+                    <select  class="selectedCoin form-control" onchange="retrieveCoinDetailsInvested()">
+                      <option value="">Select a coin</option></select>
+                    </select>
+                    <small id="selectCoinHelpInline" class="form-text text-muted">In which currency you wanted to
+                      invest.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputPastDate">Date</label>
+                    <input type="date" class="form-control" id="inputPastDate" max=
+                      aria-describedby="inputPastDateHelp" placeholder="Enter Date" />
+                    <small id="inputPastDateHelp" class="form-text text-muted">Which date in the past.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inputForAmount">Net Worth would be around</label>
+                      <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">$</div>
+                        </div>
+                        <input type="number" class="form-control" id="displayNetWortInvestedhAmount"
+                          aria-describedby="investAmountHelp" placeholder="0.00" disabled>
+                      </div>
+                    <small id="netAmountHelp" class="form-text text-muted">Net worth of amount if invested.</small>
+                  </div>
+<center>
+                  <input type="button" value="Calculate" onclick="returnWorth2()" />
+                </center>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
-</div>
+
+
+
+  <!-- Second Container -->
+  <div class="container-fluid bg-2 text-center">
+    <h3 class="margin">What Am I?</h3>
+    <p>Basically a simple tool to show you the expected worth of your cryptos - if you invest now or if you had invested.</p>
+    <p>Thanks to <a href="https://api.coingecko.com/" target="_blank"> Coin Gecko</a> for the sublime API! , all data are <a target="_blank" href="https://www.coingecko.com/api/documentations/v3">pulled</a> from there</p>
+  </div>
+
+  <!-- Third Container (Grid) -->
+  <div class="container-fluid bg-3 text-center">
+    <h3 class="margin">Where To Find Me?</h3><br>
+    <div class="row" >
+
+      <div class="col-sm-4">
+        <img src="images/linkedin.png" class="img-responsive margin" alt="Image" width="25%"/><br/>
+        <a href="https://www.linkedin.com/in/kritesh-sunghoon-286ab6128/" target="_blank">Sunghoon Kritesh</a>
+      </div>
+
+      <div class="col-sm-4">
+        <img src="images/android.png" class="img-responsive margin" alt="Image" width="50%"/><br/>
+        <a href="#">Android app coming soon...</a>
+      </div>
+
+      <div class="col-sm-4" ><br/>
+        <img src="images/hotmail.png" class="img-responsive margin" alt="Image" width="25%"/><br/>
+        <p>If you wanna ping me, my email add : <a href="mailto:kriteshsunghoon@hotmail.com">here</a></p>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="container-fluid bg-4 text-center">
+    <p>Designed and Developed by Sunghoon Kritesh</p>
+    <p>Made with love in Mauritius ❤️ </p>
+    <span style="font-size: 8px;">Theme by Bootstrap - <a href="https://www.w3schools.com" target="_blank">www.w3schools.com</a></span>
+  </footer>
 
 </body>
+
 </html>
