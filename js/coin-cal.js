@@ -1,4 +1,4 @@
-
+var currentPriceOfCoinSelected;
 window.onload = function () {
     fetchData();
     fetchNews();
@@ -16,7 +16,6 @@ function returnWorth() {
     var request = new XMLHttpRequest()
     request.open('GET', url, true)
     request.onload = function () {
-        console.log(this.response)
         var data = JSON.parse(this.response);
         coinValueinUSD = data[currency]["usd"];
         document.getElementById("displayNetWorthAmount").value = new Number((investedAmount / coinValueinUSD) * desiredAmount);
@@ -41,7 +40,7 @@ async function fetchNews() {
     const obj = await response.json();
     var counter =0;
 
-    var str ="<table style='td { padding: 10px 10px 10px 10px;border: 1px solid #444;border-bottom-width: 0px;}'>";
+    var str ="<table style='td { padding: 10px 10px 10px 10px;border: 1px solid #444;border-bottom-width: 0px;}'><tr><th class='text-center'>Latest News in the world of crypto</th></tr>";
       for (i in obj.data) {
         
 
@@ -62,7 +61,6 @@ async function fetchNews() {
         str +=' </div>';
         str +=' </div>';
 
-        console.log(counter +"----" + counter %2);
   
         }else{
              str+='</td></tr>';
@@ -81,28 +79,33 @@ async function fetchNews() {
 async function retrieveCoinDetailsInvest(){
     var currency = document.querySelector(".selectCoin").value;
     if(currency!="null"){
-        console.log(currency);
     var url = 'https://api.coingecko.com/api/v3/coins/' + currency;
     const response = await fetch(url);
     const obj = await response.json();
     document.getElementById("currencyImage").src=obj["image"]["large"];
-    console.log(obj["market_data"]["current_price"]["usd"])
-    document.querySelector(".currentPrice").innerHTML="Current price of 1 "+obj["name"]+ " = "+obj["market_data"]["current_price"]["usd"] +" $";
-    }
+    document.querySelector(".currentPrice").innerHTML="<u>Current price of 1 "+obj["name"]+ " = "+obj["market_data"]["current_price"]["usd"] +" $</u>";
+    currentPriceOfCoinSelected = obj["market_data"]["current_price"]["usd"];
+    calculateAmountCoin();   
+}
+}
+
+function calculateAmountCoin(){
+    var inputAmountToInvest=0;
+    inputAmountToInvest = document.querySelector(".inputAmountToInvest").value;
+    console.log(inputAmountToInvest);
+    console.log(currentPriceOfCoinSelected);
+    document.getElementById("coinAmount").innerHTML = 'Coin(s): '+(new Number(inputAmountToInvest/currentPriceOfCoinSelected)).toFixed(5)+'</font>';
 
 }
 
 async function retrieveCoinDetailsInvested(){
     var currency = document.querySelector(".selectedCoin").value;
     if(currency!="null"){
-        console.log(currency);
     var url = 'https://api.coingecko.com/api/v3/coins/' + currency;
     const response = await fetch(url);
     const obj = await response.json();
     document.getElementById("currencyImage2").src=obj["image"]["large"];
-    console.log(obj["market_data"]["current_price"]["usd"])
     document.querySelector(".currentPrice2").innerHTML="Current price of 1 "+obj["name"]+ " = "+obj["market_data"]["current_price"]["usd"] +" $";
-        
 }
 
 }
@@ -114,7 +117,6 @@ async function returnWorth2(){
         var currency = document.querySelector(".selectedCoin").value;
         var date = new Date(document.getElementById("inputPastDate").value);
         var dateformatted = date.getDate()+"-"+new Number(date.getMonth()+1)+"-"+date.getFullYear();
-        console.log(dateformatted);
         if(currency!="null"){
             var investedAmount = document.getElementById("inputInvestedAmount").value;
     

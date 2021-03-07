@@ -54,7 +54,7 @@
     }
 
     .bg-1 {
-      background-color: #1abc9c;
+      background-color: #36b0e059;
       /* Green */
       color: #474e5d;
     }
@@ -298,8 +298,8 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="#what_am_i">What Am I</a>
-        <a class="nav-item nav-link" href="#ping_me">What Am I</a>
+        <a class="nav-item nav-link" href="#what_am_i">What is this?</a>
+        <a class="nav-item nav-link" href="#ping_me">Who Am I?</a>
         <a class="nav-item nav-link" href="#donation">Donation</a>
       </div>
     </div>
@@ -308,12 +308,7 @@
   <!-- First Container -->
   <div class="container-fluid bg-1 text-left">
     <div class="row">
-      <div class="col-sm-4">
-        <center><b> Trending News in the crypto world!</b></center>
-        <div id="slideContainer" style="height: 760px;overflow: auto;">
-
-        </div>
-      </div>
+      
 
 
 
@@ -359,12 +354,15 @@
                       <div class="input-group-prepend">
                         <div class="input-group-text">$</div>
                       </div>
-                      <input type="number" class="form-control" id="inputInvestAmount"
-                        aria-describedby="investAmountHelp" placeholder="0.00">
+                      <input type="number" class="inputAmountToInvest form-control" id="inputInvestAmount"
+                        aria-describedby="investAmountHelp" placeholder="0.00" onchange="calculateAmountCoin()">
                     </div>
-                    <small id="inputInvestAmount" class="form-text text-muted">
-                      Amount you want to invest now.
-                    </small>
+                    <div class="row ">
+                      <div class="col-sm-6"  > <p id="coinAmount" style="color:blue;font-size:10px;"></p></div>
+                      <div class="col-sm-6">
+                        <small id="inputDesiredAmountHelp" class="form-text text-muted">Amount you want to invest now..</small> 
+                      </div>
+                    </div>
 
 
                   </div>
@@ -378,7 +376,7 @@
                       <input type="number" class="form-control" id="inputDesiredAmount"
                         aria-describedby="investAmountHelp" placeholder="0.00">
                     </div>
-                    <small id="inputDesiredAmountHelp" class="form-text text-muted">Price of coin expected.</small>
+                      <small id="inputDesiredAmountHelp" class="form-text text-muted">Price of one coin expected.</small> 
                   </div>
 
                   <div class="form-group">
@@ -477,6 +475,11 @@
           </div>
         </div>
 
+      </div>
+      <div class="col-sm-4">
+        <div id="slideContainer" style="height: 800px;overflow: auto;">
+
+        </div>
       </div>
       <div class="col-sm-4">
 
@@ -649,7 +652,7 @@
             </label>
 
           </center>
-          <p>Designed and Developed by Sunghoon Kritesh</p>
+          <p>Concocted by Sunghoon Kritesh</p>
           <p>Made with love in Mauritius ❤️ </p>
 
           <span style="font-size: 8px;">Theme by Bootstrap - <a href="https://www.w3schools.com" style="font-size: 8px;"
