@@ -3,26 +3,26 @@
 
 <head>
   <!-- Theme Made By www.w3schools.com - No Copyright -->
-  <title>Coin Calculator</title>
+  <title>Crypto Coin Calculator</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" href="bird.png">
+  <meta name="description" content="Basically a simple tool to show you the expected worth of your cryptos - if you invest now or if you had invested.">
+
+  <link rel="icon" href="calculator.png">
 
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+ <!--  <script src="js/coin-cal.js"></script> -->
+  <script src="js/coin-cal.min.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-12VDQGCXMR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  <script src="js/coin-cal.js"></script>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TTEMLR0GDS"></script>
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-TTEMLR0GDS');
-  </script>
+  gtag('config', 'G-12VDQGCXMR');
+</script>
 
   <script data-ad-client="ca-pub-2666702554288682" async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -42,7 +42,7 @@
     body {
       font: 20px Montserrat, sans-serif;
       line-height: 1.8;
-      color: #f5f6f7;
+      color: #000000;
     }
 
     p {
@@ -306,7 +306,7 @@
 
   <!-- Navbar -->
   <nav class="navbar navbar-dark bg-primary">
-    <img src="bird.png" class="img-responsive img-circle" style="display:inline;padding-right: 15px;" alt="Bird"
+    <img src="calculator.png" class="img-responsive img-circle" style="display:inline;padding-right: 15px;" alt="Calculator"
       width="50" />
     <a class="navbar-brand" href="#">Coin Calculator</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -323,6 +323,9 @@
     </div>
   </nav>
 
+  <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
+  <coingecko-coin-price-marquee-widget  coin-ids="ripple,bitcoin,cardano,enjincoin,ethereum,tether,binancecoin,uniswap,litecoin,chainlink" currency="usd" background-color="#ffffff" locale="en"></coingecko-coin-price-marquee-widget>
+
   <!-- First Container -->
   <div class="container-fluid bg-1 text-left">
     <div class="row">
@@ -338,7 +341,7 @@
               style="background-image: linear-gradient(to right,white,lightcyan);">
               <h5 class="mb-0">
                 <img src="images/ezgif.com-gif-maker.gif" class="img-responsive img-circle" style="display:inline"
-                  alt="Bird" width="50" />
+                  alt="Calculator" width="50" />
                 <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
                   aria-controls="collapseOne">
                   #If I invest now!
@@ -350,7 +353,7 @@
               <div class="card-body">
                 <form>
                   <center>
-                    <img src="bird.png" class="img-responsive img-circle" style="display:inline" alt="Bird" width="50"
+                    <img src="calculator.png" class="img-responsive img-circle" style="display:inline" alt="Calculator" width="50"
                       height="50" id="currencyImage"><br />
                     <span class="currentPrice"></span>
                   </center>
@@ -397,7 +400,7 @@
                       <input type="number" class="form-control" id="inputDesiredAmount"
                         aria-describedby="investAmountHelp" placeholder="0.00">
                     </div>
-                    <small id="inputDesiredAmountHelp" class="form-text text-muted">Price of one coin expected.</small>
+                    <small id="inputDesiredAmountHelp" class="form-text text-muted">Expected price of one coin.</small>
                   </div>
 
                   <div class="form-group">
@@ -409,7 +412,16 @@
                       <input type="number" class="form-control" id="displayNetWorthAmount"
                         aria-describedby="investAmountHelp" placeholder="0.00" disabled>
                     </div>
-                    <small id="netAmountHelp" class="form-text text-muted">Net worth of amount invested.</small>
+
+                    <div class="row ">
+                      <div class="col-sm-6">
+                        <p id="pnlAmount" ></p>
+                      </div>
+                      <div class="col-sm-6">
+                        <small id="netAmountHelp" class="form-text text-muted">Net worth of amount invested.</small>
+                      </div>
+                    </div>
+
                   </div>
                   <center>
                     <input type="button" value="Calculate" onclick="returnWorth()" />
@@ -423,7 +435,7 @@
               style="background-image: linear-gradient(to right,white,lightcyan);">
               <h5 class="mb-0">
                 <img src="images/ezgif.com-gif-maker.gif" class="img-responsive img-circle" style="display:inline"
-                  alt="Bird" width="50" />
+                  alt="Calculator" width="50" />
 
                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
                   aria-expanded="false" aria-controls="collapseTwo" onclick="fetchData()">
@@ -435,7 +447,7 @@
               <div class="card-body">
                 <form>
                   <center>
-                    <img src="bird.png" class="img-responsive img-circle" style="display:inline" alt="Bird" width="50"
+                    <img src="calculator.png" class="img-responsive img-circle" style="display:inline" alt="Calculator" width="50"
                       height="50" id="currencyImage2"><br />
                     <span class="currentPrice2"></span>
                   </center>
@@ -449,6 +461,7 @@
                     <small id="selectCoinHelpInline" class="form-text text-muted">In which currency you wanted to
                       invest.</small>
                   </div>
+
 
                   <div class="form-group">
                     <label for="inputInvestAmount">Amount</label>
@@ -485,7 +498,17 @@
                       <input type="number" class="form-control" id="displayNetWortInvestedhAmount"
                         aria-describedby="investAmountHelp" placeholder="0.00" disabled>
                     </div>
-                    <small id="netAmountHelp" class="form-text text-muted">Net worth of amount if invested.</small>
+                    
+                    <div class="row ">
+                      <div class="col-sm-6">
+                        <p id="pnlAmounted" ></p>
+                      </div>
+                      <div class="col-sm-6">
+                        <small id="netAmountHelp" class="form-text text-muted">Net worth of amount if invested.</small>
+                      </div>
+                    </div>
+                 
+                 
                   </div>
                   <center>
                     <input type="button" value="Calculate" onclick="returnWorth2()" />
@@ -554,7 +577,7 @@
       <h3 class="margin">What is this?</h3>
       <p>Basically a simple tool to show you the expected worth of your cryptos - if you invest now or if you had
         invested.</p>
-      <p>Thanks to <a href="https://api.coingecko.com/" target="_blank"> Coin Gecko</a> for the sublime API! , all data
+      <p>Thanks to <a href="https://www.coingecko.com/en" target="_blank"> Coin Gecko</a> for the sublime API! , all data
         are <a target="_blank" href="https://www.coingecko.com/api/documentations/v3">pulled</a> from there</p>
 
 
