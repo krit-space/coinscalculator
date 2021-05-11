@@ -41,7 +41,7 @@ function returnWorth() {
 
 
 async function fetchData() {
-    const response = await fetch('https://api.coingecko.com/api/v3/coins/');
+    const response = await fetch('https://api.coingecko.com/api/v3/coins/list');
     const obj = await response.json();
 
 if($('.selectCoin > option').length == 1 ){
