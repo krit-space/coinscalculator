@@ -1,11 +1,21 @@
 var currentPriceOfCoinSelected;
 window.onload = function () {
     fetchData();
-    fetchNews();
+  //  fetchNews();
     inputPastDate.max = new Date().toISOString().split("T")[0];
 
+    $("#selectCoin").select2();
+    $("#selectedCoin").select2();
+    $("#marketCapCoin").select2();
 }
-
+/*
+$(document).ready(function(){
+ 
+    // Initialize select2
+    $("#selectCoin").select2();
+    $("#selectedCoin").select2();
+})
+*/
 function returnWorth() {
     var currency = document.querySelector(".selectCoin").value;
     if (currency != "") {
@@ -41,10 +51,13 @@ function returnWorth() {
 
 
 async function fetchData() {
-    const response = await fetch('https://api.coingecko.com/api/v3/coins/list');
+   // const response = await fetch('https://api.coingecko.com/api/v3/coins/list');
+    const response = await fetch('https://raw.githubusercontent.com/krit-space/coin-calculator/main/coins.json');
     const obj = await response.json();
+   
+   
 
-if($('.selectCoin > option').length == 1 ){
+    if($('.selectCoin > option').length == 1 ){
     for (const [key, value] of Object.entries(obj)) {
         $('.selectCoin').append($("<option value=" + value.id + ">" + value.name + " - (" + value.symbol + ")</option>"));
     }
@@ -57,43 +70,15 @@ if($('.selectedCoin > option').length == 1 ){
     }
 }
 
-
-
-}
-
-async function fetchNews() {
-    const response = await fetch('https://api.coingecko.com/api/v3/news/');
-    const obj = await response.json();
-    var counter = 0;
-
-    var str = "<table style='td { padding: 10px 10px 10px 10px;border: 1px solid #444;border-bottom-width: 0px;}'><tr><th class='text-center'>Latest News in the world of crypto</th></tr>";
-    for (i in obj.data) {
-        if (counter % 2 == 0) {
-            str += '<tr><td >';
-            str += '<div class="card" >';
-            str += '<img class="img-fluid card-img-top" src="' + (obj.data[i].thumb_2x == "" ? "images/noimage.png" : obj.data[i].thumb_2x) + '" alt=""/>';
-            str += ' <div class="card-body" >';
-            str += ' <h5 class="card-title" style="font-size: 12px"><b>' + obj.data[i].title + '</b></h5>';
-            str += ' <p class="card-text" style="font-size: 12px">' + obj.data[i].description.substring(0, 200) + '...</p>';
-            str += '<p style="font-size: 12px">Article on ' + obj.data[i].news_site + ' ⤴</p>';
-            str += '<a href="' + obj.data[i].url + '" style="font-size: 12px" target="_blank" class="btn btn-primary">View >></a>';
-            str += ' </div>';
-            str += ' </div>';
-
-
-        } else {
-            str += '</td></tr>';
-        }
-
-        counter++
-
+if($('.marketCapCoin > option').length == 1 ){
+    for (const [key, value] of Object.entries(obj)) {
+        $('.marketCapCoin').append($("<option value=" + value.id + ">" + value.name + " - (" + value.symbol + ")</option>"));
     }
-
-    str += ' </table>';
-    document.getElementById("slideContainer").innerHTML = str;
-
+}
 
 }
+
+
 
 async function retrieveCoinDetailsInvest() {
     var currency = document.querySelector(".selectCoin").value;
@@ -102,7 +87,7 @@ async function retrieveCoinDetailsInvest() {
         const response = await fetch(url);
         const obj = await response.json();
         document.getElementById("currencyImage").src = obj["image"]["large"];
-        document.querySelector(".currentPrice").innerHTML = "<u>Current price of 1 " + obj["name"] + " ≈ " + obj["market_data"]["current_price"]["usd"] + " $</u>";
+        document.querySelector(".currentPrice").innerHTML = "<u>Current price of 1 <b>" + obj["name"] + " ≈ " + obj["market_data"]["current_price"]["usd"] + " $</b></u>";
         currentPriceOfCoinSelected = obj["market_data"]["current_price"]["usd"];
         calculateAmountCoin();
     }
@@ -124,10 +109,51 @@ async function retrieveCoinDetailsInvested() {
         const response = await fetch(url);
         const obj = await response.json();
         document.getElementById("currencyImage2").src = obj["image"]["large"];
-        document.querySelector(".currentPrice2").innerHTML = "Current price of 1 " + obj["name"] + " ≈ " + obj["market_data"]["current_price"]["usd"] + " $";
+        document.querySelector(".currentPrice2").innerHTML = "Current price of 1 <b>" + obj["name"] + " ≈ " + obj["market_data"]["current_price"]["usd"] + " $</b>";
     }
 
 }
+
+async function retrieveCoinDetailsMarketCap() {
+    var currency = document.querySelector(".marketCapCoin").value;
+    var nf = Intl.NumberFormat();
+    if (currency != "null") {
+        var url = 'https://api.coingecko.com/api/v3/coins/' + currency;
+        const response = await fetch(url);
+        const obj = await response.json();
+        document.getElementById("currencyImage3").src = obj["image"]["large"];
+        document.querySelector(".currentPrice3").innerHTML = "Current price of 1 <b>" + obj["name"] + " ≈ " + nf.format(obj["market_data"]["current_price"]["usd"]) + " $</b>";
+
+
+        var url2= 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids='+currency+'&order=market_cap_desc&per_page=100&page=1&sparkline=false';
+        const response2 = await fetch(url2);
+        const obj2 = await response2.json();
+        console.log(obj2[0]["market_cap"]);
+       
+       // document.getElementById("currentMarketCap").value = 10;
+       document.getElementById("currentMarketCap").value = nf.format(obj2[0]["market_cap"]);
+       document.getElementById("circulatingSupply").value =nf.format( obj2[0]["circulating_supply"]);
+       document.getElementById("maxSupply").value = nf.format(obj2[0]["max_supply"]);
+       currentPrice = obj2[0]["current_price"];
+    }
+
+
+}
+var currentPrice =0;
+
+function returnCoinWorth(){
+    var nf = Intl.NumberFormat();
+    var projected_marketcap = document.getElementById("projectedMarketCap").value;
+    var circulating_supply = document.getElementById("circulatingSupply").value;
+    var forcasted_price = parseFloat(projected_marketcap)/parseFloat(circulating_supply);
+    document.getElementById("netWorth1Token").value = nf.format(forcasted_price);
+    var percentageChange = (forcasted_price-currentPrice) / currentPrice;
+    document.querySelector("changePrice").innerHTML = percentageChange;
+
+    document.getElementById("projectedMarketCap").value=nf.format(projected_marketcap);
+
+}
+
 
 async function returnWorth2() {
 
