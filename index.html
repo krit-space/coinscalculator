@@ -12,8 +12,8 @@
 
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
- <!--  <script src="js/coin-cal.js"></script> -->
-  <script src="js/coin-cal.min.js"></script>
+  <script src="js/coin-cal.js"></script> 
+  <!-- <script src="js/coin-cal.min.js"></script>-->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-12VDQGCXMR"></script>
 <script>
@@ -38,6 +38,17 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+
+<!-- Select2 CSS --> 
+<link href="select2.css" rel="stylesheet" /> 
+
+<!-- jQuery --> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+
+<!-- Select2 JS --> 
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+
+
   <style>
     body {
       font: 20px Montserrat, sans-serif;
@@ -297,12 +308,17 @@
       -webkit-animation-delay: 0.6s;
       animation-delay: 0.6s;
     }
-  </style>
 
+  </style>
 
 </head>
 
 <body>
+  <div class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
 
   <!-- Navbar -->
   <nav class="navbar navbar-dark bg-primary">
@@ -346,8 +362,7 @@
               <h5 class="mb-0">
                 <img src="images/ezgif.com-gif-maker.gif" class="img-responsive img-circle" style="display:inline"
                   alt="Calculator" width="50" />
-                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                  aria-controls="collapseOne">
+                <button class="btn btn-link" >
                   #If I invest now!
                 </button>
               </h5>
@@ -366,8 +381,8 @@
 
                   <div class="form-group">
                     <label for="selectCoin">Currency</label>
-                    <select class="selectCoin form-control" onchange="retrieveCoinDetailsInvest()">
-                      <option value="">Select a coin</option>
+                    <select class="selectCoin form-control" onchange="retrieveCoinDetailsInvest()" id = "selectCoin" style="line-height: 1.5;">
+                      <option value="" style="font-size: 15px;">Select a coin</option>
                     </select>
                     <small id="selectCoinHelpInline" class="form-text text-muted">In which currency you want to
                       invest.</small>
@@ -436,102 +451,104 @@
               </div>
             </div>
           </div>
-          <div class="card">
-            <div class="card-header" id="headingOne"
-              style="background-image: linear-gradient(to right,white,lightcyan);">
-              <h5 class="mb-0">
-                <img src="images/ezgif.com-gif-maker.gif" class="img-responsive img-circle" style="display:inline"
-                  alt="Calculator" width="50" />
+          
+        </div>
 
-                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
-                  aria-expanded="false" aria-controls="collapseTwo" onclick="fetchData()">
-                  #If I invested!
-                </button>
-              </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-              <div class="card-body">
-                <form>
-                  <center>
-                    <img src="calculator.png" class="img-responsive img-circle" style="display:inline" alt="Calculator" width="50"
-                      height="50" id="currencyImage2"><br />
-                    <span class="currentPrice2"></span>
-                  </center>
+      </div>
 
-                  <div class="form-group">
-                    <label for="selectedCoin">Currency</label>
-                    <select class="selectedCoin form-control" onchange="retrieveCoinDetailsInvested()">
-                      <option value="">Select a coin</option>
-                    </select>
-                    </select>
-                    <small id="selectCoinHelpInline" class="form-text text-muted">In which currency you wanted to
-                      invest.</small>
-                  </div>
+      
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header" id="headingOne"
+            style="background-image: linear-gradient(to right,white,lightcyan);">
+            <h5 class="mb-0">
+              <img src="images/ezgif.com-gif-maker.gif" class="img-responsive img-circle" style="display:inline"
+                alt="Calculator" width="50" />
+
+              <button class="btn btn-link "  onclick="fetchData()">
+                #If I invested!
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+              <form>
+                <center>
+                  <img src="calculator.png" class="img-responsive img-circle" style="display:inline" alt="Calculator" width="50"
+                    height="50" id="currencyImage2"><br />
+                  <span class="currentPrice2"></span>
+                </center>
+
+                <div class="form-group">
+                  <label for="selectedCoin">Currency</label>
+                  <select class="selectedCoin form-control" onchange="retrieveCoinDetailsInvested()" id = "selectedCoin" style="line-height: 1.5;">
+                    <option value="" style="font-size: 15px;">Select a coin</option>
+                  </select>
+                  </select>
+                  <small id="selectCoinHelpInline" class="form-text text-muted">In which currency you wanted to
+                    invest.</small>
+                </div>
 
 
-                  <div class="form-group">
-                    <label for="inputInvestAmount">Amount</label>
-                    <div class="input-group mb-2">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">$</div>
-                      </div>
-                      <input type="number" class="form-control" id="inputInvestedAmount"
-                        aria-describedby="investAmountHelp" placeholder="0.00">
+                <div class="form-group">
+                  <label for="inputInvestAmount">Amount</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">$</div>
                     </div>
-                    <small id="inputInvestAmount" class="form-text text-muted">
-                      Amount you had invested.
-                    </small>
-
-
+                    <input type="number" class="form-control" id="inputInvestedAmount"
+                      aria-describedby="investAmountHelp" placeholder="0.00">
                   </div>
+                  <small id="inputInvestAmount" class="form-text text-muted">
+                    Amount you had invested.
+                  </small>
+
+
+                </div>
 
 
 
-                  <div class="form-group">
-                    <label for="inputPastDate">Date</label>
-                    <input type="date" class="form-control" id="inputPastDate" max=aria-describedby="inputPastDateHelp"
-                      placeholder="Enter Date" />
-                    <small id="demo" style="color: red;"></small>
-                    <small id="inputPastDateHelp" class="form-text text-muted">Which date in the past.</small>
-                  </div>
+                <div class="form-group">
+                  <label for="inputPastDate">Date</label>
+                  <input type="date" class="form-control" id="inputPastDate" max=aria-describedby="inputPastDateHelp"
+                    placeholder="Enter Date" />
+                  <small id="demo" style="color: red;"></small>
+                  <small id="inputPastDateHelp" class="form-text text-muted">Which date in the past.</small>
+                </div>
 
-                  <div class="form-group">
-                    <label for="inputForAmount">Net Worth would be around</label>
-                    <div class="input-group mb-2">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">$</div>
-                      </div>
-                      <input type="number" class="form-control" id="displayNetWortInvestedhAmount"
-                        aria-describedby="investAmountHelp" placeholder="0.00" disabled>
+                <div class="form-group">
+                  <label for="inputForAmount">Net Worth would be around</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">$</div>
                     </div>
-                    
-                    <div class="row ">
-                      <div class="col-sm-6">
-                        <p id="pnlAmounted" ></p>
-                      </div>
-                      <div class="col-sm-6">
-                        <small id="netAmountHelp" class="form-text text-muted">Net worth of amount if invested.</small>
-                      </div>
-                    </div>
-                 
-                 
+                    <input type="number" class="form-control" id="displayNetWortInvestedhAmount"
+                      aria-describedby="investAmountHelp" placeholder="0.00" disabled>
                   </div>
-                  <center>
-                    <input type="button" value="Calculate" onclick="returnWorth2()" />
-                  </center>
-                </form>
-              </div>
+                  
+                  <div class="row ">
+                    <div class="col-sm-6">
+                      <p id="pnlAmounted" ></p>
+                    </div>
+                    <div class="col-sm-6">
+                      <small id="netAmountHelp" class="form-text text-muted">Net worth of amount if invested.</small>
+                    </div>
+                  </div>
+               
+               
+                </div>
+                <center>
+                  <input type="button" value="Calculate" onclick="returnWorth2()" />
+                </center>
+              </form>
             </div>
           </div>
         </div>
-
       </div>
-      <div class="col-sm-4" style="margin-top: 5px;" id="news">
-        <div id="slideContainer" style="height: 800px;overflow: auto;">
 
-        </div>
-      </div>
-      <div class="col-sm-4" >
+
+
+      <!-- <div class="col-sm-4" >
 
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-top: 5px;">
           <ol class="carousel-indicators">
@@ -572,7 +589,121 @@
           </a>
         </div>
 
+      </div> -->
+
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header" id="headingOne"
+            style="background-image: linear-gradient(to right,white,lightcyan);">
+            <h5 class="mb-0">
+              <img src="images/ezgif.com-gif-maker.gif" class="img-responsive img-circle" style="display:inline"
+                alt="Calculator" width="50" />
+
+              <button class="btn btn-link "  onclick="fetchData()">
+                #Market Cap!
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+              <form>
+                <center>
+                  <img src="calculator.png" class="img-responsive img-circle" style="display:inline" alt="Calculator" width="50"
+                    height="50" id="currencyImage3"><br />
+                  <span class="currentPrice3"></span>
+                </center>
+
+                <div class="form-group">
+                  <label for="marketCapCoin">Currency</label>
+                  <select class="marketCapCoin form-control" onchange="retrieveCoinDetailsMarketCap()" id = "marketCapCoin" style="line-height: 1.5;">
+                    <option value="" style="font-size: 15px;">Select a coin</option>
+                  </select>
+                  </select>
+                  <small id="selectCoinHelpInline" class="form-text text-muted">In which currency you wish to calculate the price.</small>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="currentMarketCap">Current Market Cap</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">$</div>
+                    </div>
+                    <input type="text" class="form-control" id="currentMarketCap"
+                      aria-describedby="currentMarketCapHelp" placeholder="0.00" disabled>
+                  </div>
+
+                </div>
+                <br/>
+                <div class="row">
+
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                  <label for="CirculatingSupply">Circulating Supply</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">🌎</div>
+                    </div>
+                    <input type="text" class="form-control" id="circulatingSupply"
+                      aria-describedby="CirculatingSupplytHelp" placeholder="0.00" disabled>
+                  </div>
+                  
+                </div></div>
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                  <label for="MaxSupply">Max Supply Available</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">🌎</div>
+                    </div>
+                    <input type="text" class="form-control" id="maxSupply"
+                      aria-describedby="MaxSupplytHelp" placeholder="0.00" disabled>
+                  </div>
+
+                  </div>
+                </div>
+                </div>
+<br/>
+                <div class="row">
+
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="projectedMarketCap">Projected Market Cap</label>
+                      <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                          <div class="input-group-text">$</div>
+                        </div>
+                        <input type="text" class="form-control" id="projectedMarketCap"
+                          aria-describedby="projectedMarketCapHelp" placeholder="000">
+                      </div>
+                    </div></div>
+
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="inputForAmount">Net Worth of 1 coin/token</label>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">$</div>
+                      </div>
+                      <input type="text" class="form-control" id="netWorth1Token"
+                        aria-describedby="netWorth1TokenHelp" placeholder="0.00" disabled>
+                    </div>
+                 
+                  </div>
+                </div>
+                </div>
+                <br/>
+                <center>
+                  <input type="button" value="Calculate" onclick="returnCoinWorth()" />
+                </center>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
+
+
     </div>
   </div>
 
