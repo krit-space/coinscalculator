@@ -1,23 +1,16 @@
 var currentPriceOfCoinSelected;
+
 window.onload = function () {
     fetchData();
-  //  fetchNews();
     inputPastDate.max = new Date().toISOString().split("T")[0];
-
     $("#selectCoin").select2();
     $("#selectedCoin").select2();
     $("#marketCapCoin").select2();
 }
-/*
-$(document).ready(function(){
- 
-    // Initialize select2
-    $("#selectCoin").select2();
-    $("#selectedCoin").select2();
-})
-*/
+
 function returnWorth() {
     var currency = document.querySelector(".selectCoin").value;
+    var nf = Intl.NumberFormat();
     if (currency != "") {
         var investedAmount = document.getElementById("inputInvestAmount").value;
         var desiredAmount = document.getElementById("inputDesiredAmount").value;
@@ -34,15 +27,15 @@ function returnWorth() {
             pnl = NetWorthAmount - investedAmount;
             if (pnl > 0) {
                 document.getElementById("pnlAmount").style.color = "green";
-                document.getElementById("pnlAmount").innerHTML = "Profit($): " + pnl;
+                document.getElementById("pnlAmount").innerHTML = "Profit($): " +  nf.format(pnl);
             }
             if (pnl < 0) {
                 document.getElementById("pnlAmount").style.color = "red";
-                document.getElementById("pnlAmount").innerHTML = "Loss($): " + pnl;
+                document.getElementById("pnlAmount").innerHTML = "Loss($): " + nf.format(pnl);
             }
             if (pnl == 0) {
                 document.getElementById("pnlAmount").style.color = "red";
-                document.getElementById("pnlAmount").innerHTML = "No Profit/Lost($): " + pnl;
+                document.getElementById("pnlAmount").innerHTML = "No Profit/Lost($): " + nf.format(pnl);
             }
         };
         request.send();
@@ -51,30 +44,22 @@ function returnWorth() {
 
 
 async function fetchData() {
-   // const response = await fetch('https://api.coingecko.com/api/v3/coins/list');
-    const response = await fetch('https://raw.githubusercontent.com/krit-space/coin-calculator/main/coins.json');
-    const obj = await response.json();
-   
-   
+    const response = await fetch('https://raw.githubusercontent.com/krit-space/coin-calculator/main/coins.json').
+    then(response => response.json())
+    .then(obj =>  
+   {
 
-    if($('.selectCoin > option').length == 1 ){
+
+    var options = $('#selectCoin').html();
     for (const [key, value] of Object.entries(obj)) {
-        $('.selectCoin').append($("<option value=" + value.id + ">" + value.name + " - (" + value.symbol + ")</option>"));
+        options += "<option value='"+(value.id)+"'>"+ value.name + " - (" + value.symbol+")</option>";
     }
-}
+    $('.selectCoin').html(options);
+    $('.selectedCoin').html(options);
+    $('.marketCapCoin').html(options);
 
+});
 
-if($('.selectedCoin > option').length == 1 ){
-    for (const [key, value] of Object.entries(obj)) {
-        $('.selectedCoin').append($("<option value=" + value.id + ">" + value.name + " - (" + value.symbol + ")</option>"));
-    }
-}
-
-if($('.marketCapCoin > option').length == 1 ){
-    for (const [key, value] of Object.entries(obj)) {
-        $('.marketCapCoin').append($("<option value=" + value.id + ">" + value.name + " - (" + value.symbol + ")</option>"));
-    }
-}
 
 }
 
@@ -82,12 +67,13 @@ if($('.marketCapCoin > option').length == 1 ){
 
 async function retrieveCoinDetailsInvest() {
     var currency = document.querySelector(".selectCoin").value;
+    var nf = Intl.NumberFormat();
     if (currency != "null") {
         var url = 'https://api.coingecko.com/api/v3/coins/' + currency;
         const response = await fetch(url);
         const obj = await response.json();
         document.getElementById("currencyImage").src = obj["image"]["large"];
-        document.querySelector(".currentPrice").innerHTML = "<u>Current price of 1 <b>" + obj["name"] + " ≈ " + obj["market_data"]["current_price"]["usd"] + " $</b></u>";
+        document.querySelector(".currentPrice").innerHTML = "<u>Current price of 1 <b>" + obj["name"] + " ≈ " + nf.format(obj["market_data"]["current_price"]["usd"]) + " $</b></u>";
         currentPriceOfCoinSelected = obj["market_data"]["current_price"]["usd"];
         calculateAmountCoin();
     }
@@ -95,21 +81,23 @@ async function retrieveCoinDetailsInvest() {
 
 function calculateAmountCoin() {
     var inputAmountToInvest = 0;
+    var nf = Intl.NumberFormat();
     inputAmountToInvest = document.querySelector(".inputAmountToInvest").value;
     console.log(inputAmountToInvest);
     console.log(currentPriceOfCoinSelected);
-    document.getElementById("coinAmount").innerHTML = 'Coin(s): ' + (new Number(inputAmountToInvest / currentPriceOfCoinSelected)).toFixed(5) + '</font>';
+    document.getElementById("coinAmount").innerHTML = 'Coin(s): ' +  nf.format(inputAmountToInvest / currentPriceOfCoinSelected) + '</font>';
 
 }
 
 async function retrieveCoinDetailsInvested() {
+    var nf = Intl.NumberFormat();
     var currency = document.querySelector(".selectedCoin").value;
     if (currency != "null") {
         var url = 'https://api.coingecko.com/api/v3/coins/' + currency;
         const response = await fetch(url);
         const obj = await response.json();
         document.getElementById("currencyImage2").src = obj["image"]["large"];
-        document.querySelector(".currentPrice2").innerHTML = "Current price of 1 <b>" + obj["name"] + " ≈ " + obj["market_data"]["current_price"]["usd"] + " $</b>";
+        document.querySelector(".currentPrice2").innerHTML = "Current price of 1 <b>" + obj["name"] + " ≈ " + nf.format(obj["market_data"]["current_price"]["usd"]) + " $</b>";
     }
 
 }
@@ -143,20 +131,17 @@ var currentPrice =0;
 
 function returnCoinWorth(){
     var nf = Intl.NumberFormat();
-    var projected_marketcap = document.getElementById("projectedMarketCap").value;
-    var circulating_supply = document.getElementById("circulatingSupply").value;
-    var forcasted_price = parseFloat(projected_marketcap)/parseFloat(circulating_supply);
+    var projected_marketcap = (document.getElementById("projectedMarketCap").value).replaceAll(",","");
+    var circulating_supply = (document.getElementById("circulatingSupply").value).replaceAll(",","");
+    var forcasted_price = parseFloat(projected_marketcap)/circulating_supply;
+    console.log(forcasted_price);
     document.getElementById("netWorth1Token").value = nf.format(forcasted_price);
-    var percentageChange = (forcasted_price-currentPrice) / currentPrice;
-    document.querySelector("changePrice").innerHTML = percentageChange;
-
-    document.getElementById("projectedMarketCap").value=nf.format(projected_marketcap);
-
+    console.log(nf.format(forcasted_price));
 }
 
 
 async function returnWorth2() {
-
+    var nf = Intl.NumberFormat();
 
     try {
         document.getElementById("demo").innerHTML = "";
@@ -185,15 +170,15 @@ async function returnWorth2() {
             pnl = NetWorthAmount - investedAmount;
             if (pnl > 0) {
                 document.getElementById("pnlAmounted").style.color = "green";
-                document.getElementById("pnlAmounted").innerHTML = "Profit($): " + pnl;
+                document.getElementById("pnlAmounted").innerHTML = "Profit($): " + nf.format(pnl);
             }
             if (pnl < 0) {
                 document.getElementById("pnlAmounted").style.color = "red";
-                document.getElementById("pnlAmounted").innerHTML = "Loss($): " + pnl;
+                document.getElementById("pnlAmounted").innerHTML = "Loss($): " + nf.format(pnl);
             }
             if (pnl == 0) {
                 document.getElementById("pnlAmounted").style.color = "red";
-                document.getElementById("pnlAmounted").innerHTML = "No Profit/Lost($): " + pnl;
+                document.getElementById("pnlAmounted").innerHTML = "No Profit/Lost($): " + nf.format(pnl);
             }
         
         
