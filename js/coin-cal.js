@@ -3,10 +3,6 @@ var currentPriceOfCoinSelected;
 window.onload = function () {
     fetchData();
     inputPastDate.max = new Date().toISOString().split("T")[0];
-    $("#selectCoin").select2();
-    $("#selectedCoin").select2();
-    $("#marketCapCoin").select2();
-    $("#marketCapCoinB").select2();
 }
 
 function returnWorth() {
@@ -56,9 +52,16 @@ async function fetchData() {
         options += "<option value='"+(value.id)+"'>"+ value.name + " - (" + value.symbol+")</option>";
     }
     $('.selectCoin').html(options);
+    $("#selectCoin").selectize({sortField:"text",});
+
     $('.selectedCoin').html(options);
+    $("#selectedCoin").selectize({sortField:"text",});
+
     $('.marketCapCoin').html(options);
+    $("#marketCapCoin").selectize({sortField:"text",});
+
     $('.marketCapCoinB').html(options);
+    $("#marketCapCoinB").selectize({sortField:"text",});
 });
 
 
@@ -172,10 +175,10 @@ document.querySelector(".MarketCapDescription").innerHTML =
              "  <div class='col-9 mt-2'>"+
                     "    <p class='font-weight-bold darkWhite' id='heading'> <b>"+title+"</b></p>"+
                     "<small> 1 "+marketCapACoin +" will be: </small><br/>"+
-                     "   <span class='mt-3' style =\"color:"+color+";font-size:20px; \"> $ "+projectedPrice+" </span>"+
+                     "   <span class='mt-3' style =\"color:"+color+";font-size:20px; \"> $ "+projectedPrice+" </span><button type='button' style=\"font-size:13px;border:0;background:whitesmoke;\" onclick=\"copyToExpectedAmount("+projectedPrice+")\" title='Copy to Expected Amount.'><i class=\"fa fa-copy\"></i></button>                     "+
                   "  </div>"+
-                  "  <div class='col-3 d-flex align-items-right'>"+
-                   "     <div class='rounded-circle d-flex w-100' id='circl' > <img src='"+imageCoinA+"' style =\"opacity:100%\"  height='70px'  width='70px' alt=''> </div>"+
+                  "  <div class='col-3 d-flex align-items-center'>"+
+                   "     <div class='rounded-circle d-flex w-100' id='circl' > <img class 'center' src='"+imageCoinA+"' style =\"opacity:100%\"  height='70px'  width='70px' alt=''> </div>"+
                    " </div>"+
               "  </div>"+
               "  <div class='py-2'>"+
@@ -191,9 +194,16 @@ document.querySelector(".MarketCapDescription").innerHTML =
 "</div>";
 }
 else{
-    alert("Please choose cryptocurrencies.");
+    //alert("Please choose cryptocurrencies.");
+    document.getElementById("errorIfNotSelected").innerHTML = "Please choose currencies..."; 
 }
 }
+
+function copyToExpectedAmount(amount){
+    document.getElementById("inputDesiredAmount").value = amount;
+return false;
+}
+
 
 async function returnWorth2() {
     var nf = Intl.NumberFormat();
