@@ -484,7 +484,55 @@
         </div>
 
       </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <div class="card-header" id="headingOne"
+            style="background-image: linear-gradient(to right,white,lightcyan);">
+            <h5 class="mb-0">
+              <img src="images/ezgif.com-gif-maker.gif" class="img-responsive img-circle" style="display:inline"
+                alt="Calculator" width="50" />
 
+              <button class="btn btn-link "  onclick="fetchData()">
+                #Market Cap Calculator!
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+              <form>
+                <center>
+                  <img src="calculator.png" class="img-responsive img-circle" style="display:inline" alt="Calculator" width="50"
+                    height="50" id="currencyImage3"><br />
+                  <span class="currentPrice3"></span>
+                </center>
+
+                <div class="form-group">
+                  <label for="marketCapCoin">If</label>
+                  <select class="marketCapCoin form-control" onchange="retrieveCoinDetailsMarketCap()" id = "marketCapCoin" style="line-height: 1.5;">
+                    <option value="" style="font-size: 15px;">Select a coin</option>
+                  </select>
+                  <small id="selectCoinHelpInline" class="form-text text-muted">Current Market Cap: <span class="currentMarketCap"></span> </small>
+                </div>
+
+
+                <div class="form-group">
+                  <label for="currentMarketCapB">matches the Market Cap of,</label>
+                  <select class="marketCapCoinB form-control" onchange="retrieveCoinDetailsMarketCapB()" id = "marketCapCoinB" style="line-height: 1.5;">
+                    <option value="" style="font-size: 15px;">Select a coin</option>
+                  </select>
+                  <small id="selectCoinHelpInline" class="form-text text-muted">Current Market Cap: <span class="currentMarketCapB"></span> </small>
+                </div>
+
+                <div class="MarketCapDescription row"></div>
+
+                <center>
+                  <input type="button" value="Calculate" onclick="returnCoinWorth()" />
+                </center>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <div class="col-sm-4">
         <div class="card">
@@ -576,55 +624,7 @@
       </div>
 
 
-      <div class="col-sm-4">
-        <div class="card">
-          <div class="card-header" id="headingOne"
-            style="background-image: linear-gradient(to right,white,lightcyan);">
-            <h5 class="mb-0">
-              <img src="images/ezgif.com-gif-maker.gif" class="img-responsive img-circle" style="display:inline"
-                alt="Calculator" width="50" />
-
-              <button class="btn btn-link "  onclick="fetchData()">
-                #Market Cap Calculator!
-              </button>
-            </h5>
-          </div>
-          <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
-            <div class="card-body">
-              <form>
-                <center>
-                  <img src="calculator.png" class="img-responsive img-circle" style="display:inline" alt="Calculator" width="50"
-                    height="50" id="currencyImage3"><br />
-                  <span class="currentPrice3"></span>
-                </center>
-
-                <div class="form-group">
-                  <label for="marketCapCoin">If</label>
-                  <select class="marketCapCoin form-control" onchange="retrieveCoinDetailsMarketCap()" id = "marketCapCoin" style="line-height: 1.5;">
-                    <option value="" style="font-size: 15px;">Select a coin</option>
-                  </select>
-                  <small id="selectCoinHelpInline" class="form-text text-muted">Current Market Cap: <span class="currentMarketCap"></span> </small>
-                </div>
-
-
-                <div class="form-group">
-                  <label for="currentMarketCapB">matches the Market Cap of,</label>
-                  <select class="marketCapCoinB form-control" onchange="retrieveCoinDetailsMarketCapB()" id = "marketCapCoinB" style="line-height: 1.5;">
-                    <option value="" style="font-size: 15px;">Select a coin</option>
-                  </select>
-                  <small id="selectCoinHelpInline" class="form-text text-muted">Current Market Cap: <span class="currentMarketCapB"></span> </small>
-                </div>
-
-                <div class="MarketCapDescription row"></div>
-
-                <center>
-                  <input type="button" value="Calculate" onclick="returnCoinWorth()" />
-                </center>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+      
 
 
     </div>
