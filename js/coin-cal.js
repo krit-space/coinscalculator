@@ -6,6 +6,7 @@ window.onload = function () {
     $("#selectCoin").select2();
     $("#selectedCoin").select2();
     $("#marketCapCoin").select2();
+    $("#marketCapCoinB").select2();
 }
 
 function returnWorth() {
@@ -57,7 +58,7 @@ async function fetchData() {
     $('.selectCoin').html(options);
     $('.selectedCoin').html(options);
     $('.marketCapCoin').html(options);
-
+    $('.marketCapCoinB').html(options);
 });
 
 
@@ -67,7 +68,6 @@ async function fetchData() {
 
 async function retrieveCoinDetailsInvest() {
     var currency = document.querySelector(".selectCoin").value;
- //   var nf = Intl.NumberFormat();
     if (currency != "null") {
         var url = 'https://api.coingecko.com/api/v3/coins/' + currency;
         const response = await fetch(url);
@@ -83,14 +83,11 @@ function calculateAmountCoin() {
     var inputAmountToInvest = 0;
     var nf = Intl.NumberFormat();
     inputAmountToInvest = document.querySelector(".inputAmountToInvest").value;
-  //  console.log(inputAmountToInvest);
-   // console.log(currentPriceOfCoinSelected);
     document.getElementById("coinAmount").innerHTML = 'Coin(s): ' +  nf.format(inputAmountToInvest / currentPriceOfCoinSelected) + '</font>';
 
 }
 
 async function retrieveCoinDetailsInvested() {
-  //  var nf = Intl.NumberFormat();
     var currency = document.querySelector(".selectedCoin").value;
     if (currency != "null") {
         var url = 'https://api.coingecko.com/api/v3/coins/' + currency;
@@ -111,34 +108,92 @@ async function retrieveCoinDetailsMarketCap() {
         const obj = await response.json();
         document.getElementById("currencyImage3").src = obj["image"]["large"];
         document.querySelector(".currentPrice3").innerHTML = "Current price of 1 <b>" + obj["name"] + " ≈ " + obj["market_data"]["current_price"]["usd"] + " $</b>";
-
-
-        var url2= 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids='+currency+'&order=market_cap_desc&per_page=100&page=1&sparkline=false';
-        const response2 = await fetch(url2);
-        const obj2 = await response2.json();
-        console.log(obj2[0]["market_cap"]);
-       
-       // document.getElementById("currentMarketCap").value = 10;
-       document.getElementById("currentMarketCap").value = nf.format(obj2[0]["market_cap"]);
-       document.getElementById("circulatingSupply").value =nf.format( obj2[0]["circulating_supply"]);
-       document.getElementById("maxSupply").value = nf.format(obj2[0]["max_supply"]);
-       currentPrice = obj2[0]["current_price"];
+        imageCoinA=obj["image"]["large"];
+        coinASymbol = currency;
+        marketCapACoin=obj["name"];
+        priceCoinA = obj["market_data"]["current_price"]["usd"];
+        marketCapA = obj["market_data"]["market_cap"]["usd"];
+       document.querySelector(".currentMarketCap").innerHTML = nf.format(obj["market_data"]["market_cap"]["usd"]);
     }
 
 
 }
-var currentPrice =0;
 
-function returnCoinWorth(){
+async function retrieveCoinDetailsMarketCapB() {
+    var currency = document.querySelector(".marketCapCoinB").value;
     var nf = Intl.NumberFormat();
-    var projected_marketcap = (document.getElementById("projectedMarketCap").value).replaceAll(",","");
-    var circulating_supply = (document.getElementById("circulatingSupply").value).replaceAll(",","");
-    var forcasted_price = parseFloat(projected_marketcap)/circulating_supply;
-    console.log(forcasted_price);
-    document.getElementById("netWorth1Token").value = nf.format(forcasted_price);
-    console.log(nf.format(forcasted_price));
+    if (currency != "null") {
+        var url = 'https://api.coingecko.com/api/v3/coins/' + currency;
+        const response = await fetch(url);
+        const obj = await response.json();
+        marketCapBCoin=obj["name"];
+      marketCapB = obj["market_data"]["market_cap"]["usd"];
+       document.querySelector(".currentMarketCapB").innerHTML = nf.format(obj["market_data"]["market_cap"]["usd"]);
+    }
+
+
 }
 
+var currentPrice =0;
+
+var marketCapACoin="";
+var priceCoinA=0;
+var marketCapBCoin="";
+var marketCapA=0;
+var marketCapB=0;
+var imageCoinA="";
+var coinASymbol="";
+function returnCoinWorth(){
+if(marketCapACoin != "" && marketCapBCoin != ""){
+
+
+    var nf = Intl.NumberFormat();
+    var link = "https://www.coingecko.com/en/coins/"+coinASymbol;
+    var title = marketCapACoin +" with market cap of "+marketCapBCoin+"";
+   
+
+var times = (marketCapB / marketCapA);
+var projectedPrice = times * priceCoinA;
+var color = "";
+if(times >= 1){
+    color="green";
+}else{
+    color="red";
+}
+
+var today = new Date();
+var currentTime = today.getDay()+"/"+today.getMonth()+"/"+today.getFullYear()+" "+ today. getHours() + ":" + today. getMinutes() ;
+document.querySelector(".MarketCapDescription").innerHTML = 
+"<div class='container-fluid' style=\"padding-top: 0px;\">"+
+  "  <div class='row justify-content-center' >"+
+       " <div class='col-12 col-md-12 col-sm-12 col-xs-12'>"+
+          "  <div class='card px-4 py-2'>"+
+             "   <div class='div1 row py-2 px-2' >"+ 
+             "  <div class='col-9 mt-2'>"+
+                    "    <p class='font-weight-bold darkWhite' id='heading'> <b>"+title+"</b></p>"+
+                    "<small> 1 "+marketCapACoin +" will be: </small><br/>"+
+                     "   <span class='mt-3' style =\"color:"+color+";font-size:20px; \"> $ "+projectedPrice+" </span>"+
+                  "  </div>"+
+                  "  <div class='col-3 d-flex align-items-right'>"+
+                   "     <div class='rounded-circle d-flex w-100' id='circl' > <img src='"+imageCoinA+"' style =\"opacity:100%\"  height='70px'  width='70px' alt=''> </div>"+
+                   " </div>"+
+              "  </div>"+
+              "  <div class='py-2'>"+
+              "<small>Pulling a : </small> "+
+                 "   <p id='desc'> <span class='mt-3' style =\"color:"+color+";font-size:15px; \">"+times+" </span>x"+
+                 "   <div class='d-flex'>"+
+                  "      <h6 class=' align-self-center'> <a target = '_blank' href='"+link+"'> Learn more <span class='rounded-circle sp1 px-2 py-0 ml-1'> <i class='fa fa-angle-right' aria-hidden='true'></i> </span> </a> </h6> <button disabled class='btn d-flex ml-auto px-3 font-weight-bold darkWhite'>"+currentTime+" </button>"+
+                  "  </div>"+
+              "  </div>"+
+           " </div>"+
+      "  </div>"+
+ "   </div>"+
+"</div>";
+}
+else{
+    alert("Please choose cryptocurrencies.");
+}
+}
 
 async function returnWorth2() {
     var nf = Intl.NumberFormat();
@@ -190,6 +245,5 @@ async function returnWorth2() {
 
     }
 }
-// https://api.coingecko.com/api/v3/coins/
-//https://www.coingecko.com/api/documentations/v3#/simple/get_simple_token_price__id_
+
 
