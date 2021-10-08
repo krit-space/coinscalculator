@@ -67,13 +67,13 @@ async function fetchData() {
 
 async function retrieveCoinDetailsInvest() {
     var currency = document.querySelector(".selectCoin").value;
-    var nf = Intl.NumberFormat();
+ //   var nf = Intl.NumberFormat();
     if (currency != "null") {
         var url = 'https://api.coingecko.com/api/v3/coins/' + currency;
         const response = await fetch(url);
         const obj = await response.json();
         document.getElementById("currencyImage").src = obj["image"]["large"];
-        document.querySelector(".currentPrice").innerHTML = "<u>Current price of 1 <b>" + obj["name"] + " ≈ " + nf.format(obj["market_data"]["current_price"]["usd"]) + " $</b></u>";
+        document.querySelector(".currentPrice").innerHTML = "<u>Current price of 1 <b>" + obj["name"] + " ≈ " + obj["market_data"]["current_price"]["usd"] + " $</b></u>";
         currentPriceOfCoinSelected = obj["market_data"]["current_price"]["usd"];
         calculateAmountCoin();
     }
@@ -83,21 +83,21 @@ function calculateAmountCoin() {
     var inputAmountToInvest = 0;
     var nf = Intl.NumberFormat();
     inputAmountToInvest = document.querySelector(".inputAmountToInvest").value;
-    console.log(inputAmountToInvest);
-    console.log(currentPriceOfCoinSelected);
+  //  console.log(inputAmountToInvest);
+   // console.log(currentPriceOfCoinSelected);
     document.getElementById("coinAmount").innerHTML = 'Coin(s): ' +  nf.format(inputAmountToInvest / currentPriceOfCoinSelected) + '</font>';
 
 }
 
 async function retrieveCoinDetailsInvested() {
-    var nf = Intl.NumberFormat();
+  //  var nf = Intl.NumberFormat();
     var currency = document.querySelector(".selectedCoin").value;
     if (currency != "null") {
         var url = 'https://api.coingecko.com/api/v3/coins/' + currency;
         const response = await fetch(url);
         const obj = await response.json();
         document.getElementById("currencyImage2").src = obj["image"]["large"];
-        document.querySelector(".currentPrice2").innerHTML = "Current price of 1 <b>" + obj["name"] + " ≈ " + nf.format(obj["market_data"]["current_price"]["usd"]) + " $</b>";
+        document.querySelector(".currentPrice2").innerHTML = "Current price of 1 <b>" + obj["name"] + " ≈ " + obj["market_data"]["current_price"]["usd"] + " $</b>";
     }
 
 }
@@ -110,7 +110,7 @@ async function retrieveCoinDetailsMarketCap() {
         const response = await fetch(url);
         const obj = await response.json();
         document.getElementById("currencyImage3").src = obj["image"]["large"];
-        document.querySelector(".currentPrice3").innerHTML = "Current price of 1 <b>" + obj["name"] + " ≈ " + nf.format(obj["market_data"]["current_price"]["usd"]) + " $</b>";
+        document.querySelector(".currentPrice3").innerHTML = "Current price of 1 <b>" + obj["name"] + " ≈ " + obj["market_data"]["current_price"]["usd"] + " $</b>";
 
 
         var url2= 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids='+currency+'&order=market_cap_desc&per_page=100&page=1&sparkline=false';
