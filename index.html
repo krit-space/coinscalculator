@@ -599,86 +599,24 @@
                 </center>
 
                 <div class="form-group">
-                  <label for="marketCapCoin">Currency</label>
+                  <label for="marketCapCoin">If</label>
                   <select class="marketCapCoin form-control" onchange="retrieveCoinDetailsMarketCap()" id = "marketCapCoin" style="line-height: 1.5;">
                     <option value="" style="font-size: 15px;">Select a coin</option>
                   </select>
-                  </select>
-                  <small id="selectCoinHelpInline" class="form-text text-muted">In which currency you wish to calculate the price.</small>
+                  <small id="selectCoinHelpInline" class="form-text text-muted">Current Market Cap: <span class="currentMarketCap"></span> </small>
                 </div>
 
 
                 <div class="form-group">
-                  <label for="currentMarketCap">Current Market Cap</label>
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">$</div>
-                    </div>
-                    <input type="text" class="form-control" id="currentMarketCap"
-                      aria-describedby="currentMarketCapHelp" placeholder="0.00" disabled>
-                  </div>
-
+                  <label for="currentMarketCapB">matches the Market Cap of,</label>
+                  <select class="marketCapCoinB form-control" onchange="retrieveCoinDetailsMarketCapB()" id = "marketCapCoinB" style="line-height: 1.5;">
+                    <option value="" style="font-size: 15px;">Select a coin</option>
+                  </select>
+                  <small id="selectCoinHelpInline" class="form-text text-muted">Current Market Cap: <span class="currentMarketCapB"></span> </small>
                 </div>
-                <br/>
-                <div class="row">
 
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                  <label for="CirculatingSupply">Circulating Supply</label>
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">🌎</div>
-                    </div>
-                    <input type="text" class="form-control" id="circulatingSupply"
-                      aria-describedby="CirculatingSupplytHelp" placeholder="0.00" disabled>
-                  </div>
-                  
-                </div></div>
+                <div class="MarketCapDescription row"></div>
 
-                <div class="col-sm-6">
-                  <div class="form-group">
-                  <label for="MaxSupply">Max Supply Available</label>
-                  <div class="input-group mb-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text">🌎</div>
-                    </div>
-                    <input type="text" class="form-control" id="maxSupply"
-                      aria-describedby="MaxSupplytHelp" placeholder="0.00" disabled>
-                  </div>
-
-                  </div>
-                </div>
-                </div>
-<br/>
-                <div class="row">
-
-                  <div class="col-sm-6">
-                    <div class="form-group">
-                      <label for="projectedMarketCap">Projected Market Cap</label>
-                      <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                          <div class="input-group-text">$</div>
-                        </div>
-                        <input type="text" class="form-control" id="projectedMarketCap"
-                          aria-describedby="projectedMarketCapHelp" placeholder="000">
-                      </div>
-                    </div></div>
-
-                <div class="col-sm-6">
-                  <div class="form-group">
-                    <label for="inputForAmount">Net Worth of 1 coin/token</label>
-                    <div class="input-group mb-2">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">$</div>
-                      </div>
-                      <input type="text" class="form-control" id="netWorth1Token"
-                        aria-describedby="netWorth1TokenHelp" placeholder="0.00" disabled>
-                    </div>
-                 
-                  </div>
-                </div>
-                </div>
-                <br/>
                 <center>
                   <input type="button" value="Calculate" onclick="returnCoinWorth()" />
                 </center>
