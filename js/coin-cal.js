@@ -197,6 +197,7 @@ document.querySelector(".MarketCapDescription").innerHTML =
       "  </div>"+
  "   </div>"+
 "</div>";
+    document.getElementById("errorIfNotSelected").innerHTML ="";
 }
 else{
     //alert("Please choose cryptocurrencies.");
