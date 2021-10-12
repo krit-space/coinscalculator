@@ -27,7 +27,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+ 
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
@@ -414,8 +415,18 @@
                     <select class="selectCoin form-control" onchange="retrieveCoinDetailsInvest()" id = "selectCoin" style="line-height: 1.5;">
                       <option value="" style="font-size: 15px;">Select a coin</option>
                     </select>
-                    <small id="selectCoinHelpInline" class="form-text text-muted">In which currency you want to
-                      invest.</small>
+
+                      <div class="row ">
+                        <div class="col-sm-6" >
+                          <small  class="form-text text-muted" style="text-align: left;">Market Cap Rank: <span class="coinMcap"></span> </small>
+                        </div>
+                        <div class="col-sm-6">
+                          <small  class="form-text text-muted">In which currency you want to invest.</small>
+                        </div>
+                      </div>
+
+
+
                   </div>
 
 
@@ -512,7 +523,15 @@
                   <select class="marketCapCoin form-control" onchange="retrieveCoinDetailsMarketCap()" id = "marketCapCoin" style="line-height: 1.5;">
                     <option value="" style="font-size: 15px;">Select a coin</option>
                   </select>
-                  <small id="selectCoinHelpInline" class="form-text text-muted">Current Market Cap: <span class="currentMarketCap"></span> </small>
+                  <div class="row ">
+                    <div class="col-sm-6" >
+                      <small  class="form-text text-muted" style="text-align: left;">Market Cap Rank: <span class="coinARank"></span> </small>
+                    </div>
+                    <div class="col-sm-6">
+                      <small  class="form-text text-muted">Current Market Cap: <span class="currentMarketCap"></span> </small>
+                    </div>
+                  </div>
+                 
                 </div>
 
 
@@ -521,7 +540,15 @@
                   <select class="marketCapCoinB form-control" onchange="retrieveCoinDetailsMarketCapB()" id = "marketCapCoinB" style="line-height: 1.5;">
                     <option value="" style="font-size: 15px;">Select a coin</option>
                   </select>
-                  <small id="selectCoinHelpInline" class="form-text text-muted">Current Market Cap: <span class="currentMarketCapB"></span> </small>
+                  <div class="row ">
+                    <div class="col-sm-6" >
+                      <small  class="form-text text-muted" style="text-align: left;">Market Cap Rank: <span class="coinBRank"></span> </small>
+                    </div>
+                    <div class="col-sm-6">
+                      <small  class="form-text text-muted">Current Market Cap: <span class="currentMarketCapB"></span> </small>
+                    </div>
+                  </div>
+                
                 </div>
 
                 <div class="MarketCapDescription row"></div>
