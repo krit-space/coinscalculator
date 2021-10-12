@@ -78,6 +78,8 @@ async function retrieveCoinDetailsInvest() {
         document.getElementById("currencyImage").src = obj["image"]["large"];
         document.querySelector(".currentPrice").innerHTML = "<u>Current price of 1 <b>" + obj["name"] + " ≈ " + obj["market_data"]["current_price"]["usd"] + " $</b></u>";
         currentPriceOfCoinSelected = obj["market_data"]["current_price"]["usd"];
+        document.querySelector(".coinMcap").innerHTML = obj["market_cap_rank"] == null ? "N/A": obj["market_cap_rank"];
+
         calculateAmountCoin();
     }
 }
@@ -117,6 +119,7 @@ async function retrieveCoinDetailsMarketCap() {
         priceCoinA = obj["market_data"]["current_price"]["usd"];
         marketCapA = obj["market_data"]["market_cap"]["usd"];
        document.querySelector(".currentMarketCap").innerHTML = nf.format(obj["market_data"]["market_cap"]["usd"]);
+       document.querySelector(".coinARank").innerHTML = obj["market_cap_rank"] == null ? "N/A": obj["market_cap_rank"];;
     }
 
 
@@ -132,6 +135,8 @@ async function retrieveCoinDetailsMarketCapB() {
         marketCapBCoin=obj["name"];
       marketCapB = obj["market_data"]["market_cap"]["usd"];
        document.querySelector(".currentMarketCapB").innerHTML = nf.format(obj["market_data"]["market_cap"]["usd"]);
+       document.querySelector(".coinBRank").innerHTML =obj["market_cap_rank"] == null ? "N/A": obj["market_cap_rank"];;
+
     }
 
 
