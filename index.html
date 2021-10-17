@@ -13,6 +13,7 @@
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="js/coin-cal.js"></script> 
+  <link rel="stylesheet" type="text/css" href="style.css" />
   <!-- <script src="js/coin-cal.min.js"></script>-->
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-12VDQGCXMR"></script>
@@ -42,308 +43,7 @@
           <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/css/selectize.bootstrap4.css" />
 
 
-  <style>
-    body {
-      font: 20px Montserrat, sans-serif;
-      line-height: 1.8;
-      color: #000000;
-    }
-
-    p {
-      font-size: 16px;
-    }
-
-    .margin {
-      margin-bottom: 30px;
-    }
-
-    .bg-1 {
-      background-color: #36b0e059;
-      /* Green */
-      color: #474e5d;
-    }
-
-    .bg-2 {
-      background-color: #474e5d;
-      /* Dark Blue */
-      color: #ffffff;
-    }
-
-    .bg-3 {
-      background-color: #ffffff;
-      /* White */
-      color: #555555;
-    }
-
-    .bg-4 {
-      background-color: #2f2f2f;
-      /* Black Gray */
-      color: #fff;
-    }
-
-    .container-fluid {
-      padding-top: 30px;
-      padding-bottom: 30px;
-    }
-
-    .navbar {
-      padding-top: 15px;
-      padding-bottom: 15px;
-      border: 0;
-      border-radius: 0;
-      margin-bottom: 0;
-      font-size: 12px;
-      letter-spacing: 5px;
-    }
-
-    .navbar-nav li a:hover {
-      color: #1abc9c !important;
-    }
-
-    label {
-      color: blue;
-    }
-
-    small {
-      font-size: small;
-      text-align: right;
-    }
-  </style>
-
-  <style>
-    .donate-crypto-box {
-      display: flex;
-      align-items: center;
-      width: 100%;
-      padding: 1em;
-      box-sizing: border-box;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      cursor: text;
-    }
-
-    .coin {
-      display: inline-block;
-      position: relative;
-      min-width: 3em;
-      min-height: 3em;
-      -webkit-animation: spin 3s cubic-bezier(0.3, 2, 0.4, 0.8) infinite both;
-      animation: spin 3s cubic-bezier(0.3, 2, 0.4, 0.8) infinite both;
-      transform-style: preserve-3d;
-      vertical-align: middle;
-    }
-
-    @-webkit-keyframes spin {
-
-      0%,
-      10% {
-        transform: rotate(-10deg) perspective(400px);
-      }
-
-      90%,
-      100% {
-        transform: rotate(-10deg) perspective(400px) rotateY(180deg);
-      }
-    }
-
-    @keyframes spin {
-
-      0%,
-      10% {
-        transform: rotate(-10deg) perspective(400px);
-      }
-
-      90%,
-      100% {
-        transform: rotate(-10deg) perspective(400px) rotateY(180deg);
-      }
-    }
-
-    .coin-face {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 50%;
-    }
-
-    .coin-face:nth-child(1) {
-      transform: translateZ(-0.2em) rotateY(-180deg);
-    }
-
-    .coin-face:nth-child(2) {
-      transform: translateZ(-0.1em);
-    }
-
-    .coin-face:nth-child(4) {
-      transform: translateZ(0.1em);
-    }
-
-    .coin-face:nth-child(5) {
-      transform: translateZ(0.2em);
-    }
-
-    .coin-face svg {
-      width: 100%;
-      height: 100%;
-    }
-
-    .coin-address {
-      flex: 1;
-      font: 0.7em/2.5 Monaco, monospace;
-      text-align: center;
-      margin-left: 1em;
-      border-width: 0 0 2px;
-      border-color: rgba(0, 0, 0, 0.1);
-      transition: border-color 0.3s;
-      cursor: text;
-    }
-
-    .coin-address:hover {
-      transition-duration: 0.1s;
-    }
-
-    .btc {
-      max-width: 21em;
-    }
-
-    .btc .coin-face {
-      background: shade(#ff9900, 35%);
-    }
-
-    .btc .coin-face:nth-child(1),
-    .btc .coin-face:nth-child(5) {
-      background: #ff9900;
-    }
-
-    .btc .coin-address:hover,
-    .btc .coin-address:focus {
-      border-color: #ff9900;
-    }
-
-    .eth {
-      max-width: 23em;
-    }
-
-    .eth .coin-face {
-      background: shade(#6F7CBA, 35%);
-    }
-
-    .eth .coin-face:nth-child(1),
-    .eth .coin-face:nth-child(5) {
-      background: #6F7CBA;
-    }
-
-    .eth .coin-address:hover,
-    .eth .coin-address:focus {
-      border-color: #6F7CBA;
-    }
-
-    .ltc {
-      max-width: 21em;
-    }
-
-    .ltc .coin-face {
-      background: shade(#b5b5b5, 35%);
-    }
-
-    .ltc .coin-face:nth-child(1),
-    .ltc .coin-face:nth-child(5) {
-      background: #b5b5b5;
-    }
-
-    .ltc .coin-address:hover,
-    .ltc .coin-address:focus {
-      border-color: #b5b5b5;
-    }
-
-    .ada {
-      max-width: 21em;
-    }
-
-    .ada .coin-face {
-      background: shade(blue, 35%);
-    }
-
-    .ada .coin-face:nth-child(1),
-    .ada .coin-face:nth-child(5) {
-      background: blue;
-    }
-
-    .ada .coin-address:hover,
-    .ada .coin-address:focus {
-      border-color: blue;
-    }
-
-    .coin {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      /* height: 100vh; */
-      font-size: 1vmin;
-    }
-
-    .donate-crypto-box:nth-child(1) .coin {
-      -webkit-animation-delay: 0.2s;
-      animation-delay: 0.2s;
-    }
-
-    .donate-crypto-box:nth-child(2) .coin {
-      -webkit-animation-delay: 0.4s;
-      animation-delay: 0.4s;
-    }
-
-    .donate-crypto-box:nth-child(3) .coin {
-      -webkit-animation-delay: 0.6s;
-      animation-delay: 0.6s;
-    }
-
-  </style>
-
-
-<style>
- #spinner:not([hidden]) {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#spinner::after {
-  content: "";
-  width: 80px;
-  height: 80px;
-  border: 2px solid #f3f3f3;
-  border-top: 3px solid #f25a41;
-  border-radius: 100%;
-  will-change: transform;
-  animation: spin 1s infinite linear
-}
-
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-</style>
+ 
 
 </head>
 
@@ -374,20 +74,13 @@
     </div>
   </nav>
 
-  <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
-  <coingecko-coin-price-marquee-widget  coin-ids="ripple,bitcoin,cardano,enjincoin,ethereum,tether,binancecoin,uniswap,litecoin,chainlink" currency="usd" background-color="#ffffff" locale="en"></coingecko-coin-price-marquee-widget>
-
+ 
   <!-- First Container -->
   <div class="container-fluid bg-1 text-left">
     <div class="row">
-
-      <div class="col-sm-4">
-
-
+      <div class="col-sm-4" style="margin-top: 10px;">
         <div id="accordion">
           <div class="card">
-
-
             <div class="card-header" id="headingOne"
               style="background-image: linear-gradient(to right,white,lightcyan);">
               <h5 class="mb-0">
@@ -398,20 +91,17 @@
                 </button>
               </h5>
             </div>
-
-            
-
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
               <div class="card-body">
                 <form>
                   <center>
                     <img src="calculator.png" class="img-responsive img-circle" style="display:inline" alt="Calculator" width="50"
                       height="50" id="currencyImage"><br />
-                    <span class="currentPrice"></span>
+                    <p class="currentPrice"></p>
                   </center>
 
                   <div class="form-group">
-                    <label for="selectCoin">Currency</label>
+                  <label for="selectCoin">Currency</label> <small>(In which currency you want to invest)</small>
                     <select class="selectCoin form-control" onchange="retrieveCoinDetailsInvest()" id = "selectCoin" style="line-height: 1.5;">
                       <option value="" style="font-size: 15px;">Select a coin</option>
                     </select>
@@ -419,9 +109,6 @@
                       <div class="row ">
                         <div class="col-sm-6" >
                           <small  class="form-text text-muted" style="text-align: left;">Market Cap Rank: <span class="coinMcap"></span> </small>
-                        </div>
-                        <div class="col-sm-6">
-                          <small  class="form-text text-muted">In which currency you want to invest.</small>
                         </div>
                       </div>
 
@@ -431,7 +118,7 @@
 
 
                   <div class="form-group">
-                    <label for="inputInvestAmount">Amount</label>
+                    <label for="inputInvestAmount">Amount</label><small> (Amount you want to invest now)</small>
 
                     <div class="input-group mb-2">
                       <div class="input-group-prepend">
@@ -442,19 +129,16 @@
                     </div>
                     <div class="row ">
                       <div class="col-sm-6">
-                        <p id="coinAmount" style="color:blue;font-size:10px;"></p>
+                        <span id="coinAmount" style="color:blue;font-size:10px;"></span>
                       </div>
-                      <div class="col-sm-6">
-                        <small id="inputDesiredAmountHelp" class="form-text text-muted">Amount you want to invest
-                          now..</small>
-                      </div>
+
                     </div>
 
 
                   </div>
 
                   <div class="form-group">
-                    <label for="inputForAmount">Expected Amount</label>
+                    <label for="inputForAmount">Expected Amount</label> <small> (Expected price of one coin)</small>
                     <div class="input-group mb-2">
                       <div class="input-group-prepend">
                         <div class="input-group-text">$</div>
@@ -462,11 +146,10 @@
                       <input type="number" class="form-control" id="inputDesiredAmount"
                         aria-describedby="investAmountHelp" placeholder="0.00">
                     </div>
-                    <small id="inputDesiredAmountHelp" class="form-text text-muted">Expected price of one coin.</small>
                   </div>
 
                   <div class="form-group">
-                    <label for="inputForAmount">Net Worth will be</label>
+                    <label for="inputForAmount">Net Worth will be</label> <small> (Net worth of amount invested)</small>
                     <div class="input-group mb-2">
                       <div class="input-group-prepend">
                         <div class="input-group-text">$</div>
@@ -479,11 +162,7 @@
                       <div class="col-sm-6">
                         <p id="pnlAmount" ></p>
                       </div>
-                      <div class="col-sm-6">
-                        <small id="netAmountHelp" class="form-text text-muted">Net worth of amount invested.</small>
-                      </div>
                     </div>
-
                   </div>
                   <center>
                     <input type="button" value="Calculate" onclick="returnWorth()" />
@@ -496,7 +175,7 @@
         </div>
 
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4" style="margin-top: 10px;">
         <div class="card">
           <div class="card-header" id="headingOne"
             style="background-image: linear-gradient(to right,white,lightcyan);">
@@ -525,10 +204,10 @@
                   </select>
                   <div class="row ">
                     <div class="col-sm-6" >
-                      <small  class="form-text text-muted" style="text-align: left;">Market Cap Rank: <span class="coinARank"></span> </small>
+                      <small  class="form-text text-muted" style="text-align: left;">MC Rank: <span class="coinARank"></span> </small>
                     </div>
                     <div class="col-sm-6">
-                      <small  class="form-text text-muted">Current Market Cap: <span class="currentMarketCap"></span> </small>
+                      <small  class="form-text text-muted" style="text-align: left;">Current MC: <span class="currentMarketCap"></span> </small>
                     </div>
                   </div>
                  
@@ -542,10 +221,10 @@
                   </select>
                   <div class="row ">
                     <div class="col-sm-6" >
-                      <small  class="form-text text-muted" style="text-align: left;">Market Cap Rank: <span class="coinBRank"></span> </small>
+                      <small  class="form-text text-muted" style="text-align: left;">MC Rank: <span class="coinBRank"></span> </small>
                     </div>
                     <div class="col-sm-6">
-                      <small  class="form-text text-muted">Current Market Cap: <span class="currentMarketCapB"></span> </small>
+                      <small  class="form-text text-muted" style="text-align: left;">Current MC: <span class="currentMarketCapB"></span> </small>
                     </div>
                   </div>
                 
@@ -562,7 +241,7 @@
         </div>
       </div>
       
-      <div class="col-sm-4">
+      <div class="col-sm-4" style="margin-top: 10px;">
         <div class="card">
           <div class="card-header" id="headingOne"
             style="background-image: linear-gradient(to right,white,lightcyan);">
@@ -585,18 +264,15 @@
                 </center>
 
                 <div class="form-group">
-                  <label for="selectedCoin">Currency</label>
+                  <label for="selectedCoin">Currency</label> <small>(In which currency you wanted to invest)</small>
                   <select class="selectedCoin form-control" onchange="retrieveCoinDetailsInvested()" id = "selectedCoin" style="line-height: 1.5;">
                     <option value="" style="font-size: 15px;">Select a coin</option>
                   </select>
-                  </select>
-                  <small id="selectCoinHelpInline" class="form-text text-muted">In which currency you wanted to
-                    invest.</small>
                 </div>
 
 
                 <div class="form-group">
-                  <label for="inputInvestAmount">Amount</label>
+                  <label for="inputInvestAmount">Amount</label> <small>(Amount you had invested)</small>
                   <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <div class="input-group-text">$</div>
@@ -604,21 +280,13 @@
                     <input type="number" class="form-control" id="inputInvestedAmount"
                       aria-describedby="investAmountHelp" placeholder="0.00">
                   </div>
-                  <small id="inputInvestAmount" class="form-text text-muted">
-                    Amount you had invested.
-                  </small>
-
-
                 </div>
 
-
-
                 <div class="form-group">
-                  <label for="inputPastDate">Date</label>
+                  <label for="inputPastDate">Date</label> <small>(Which date in the past)</small>
                   <input type="date" class="form-control" id="inputPastDate" max=aria-describedby="inputPastDateHelp"
                     placeholder="Enter Date" />
                   <small id="demo" style="color: red;"></small>
-                  <small id="inputPastDateHelp" class="form-text text-muted">Which date in the past.</small>
                 </div>
 
                 <div class="form-group">
@@ -634,9 +302,6 @@
                   <div class="row ">
                     <div class="col-sm-6">
                       <p id="pnlAmounted" ></p>
-                    </div>
-                    <div class="col-sm-6">
-                      <small id="netAmountHelp" class="form-text text-muted">Net worth of amount if invested.</small>
                     </div>
                   </div>
                
@@ -657,6 +322,9 @@
 
     </div>
   </div>
+
+  <script src="https://widgets.coingecko.com/coingecko-coin-price-marquee-widget.js"></script>
+  <coingecko-coin-price-marquee-widget  coin-ids="ripple,bitcoin,cardano,enjincoin,ethereum,tether,binancecoin,uniswap,litecoin,chainlink" currency="usd" background-color="#ffffff" locale="en"></coingecko-coin-price-marquee-widget>
 
 
   <a id="what_am_i">
