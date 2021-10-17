@@ -111,7 +111,7 @@ async function retrieveCoinDetailsMarketCap() {
         var url = 'https://api.coingecko.com/api/v3/coins/' + currency;
         const response = await fetch(url);
         const obj = await response.json();
-        document.getElementById("currencyImage3").src = obj["image"]["large"];
+      //  document.getElementById("currencyImage3").src = obj["image"]["large"];
         document.querySelector(".currentPrice3").innerHTML = "Current price of 1 <b>" + obj["name"] + " ≈ " + obj["market_data"]["current_price"]["usd"] + " $</b>";
         imageCoinA=obj["image"]["large"];
         coinASymbol = currency;
@@ -152,16 +152,18 @@ var marketCapB=0;
 var imageCoinA="";
 var coinASymbol="";
 function returnCoinWorth(){
-if(marketCapACoin != "" && marketCapBCoin != ""){
+
+    if(marketCapACoin != "" && marketCapBCoin != ""){
 
 
-    var nf = Intl.NumberFormat();
+  var nf = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD',maximumFractionDigits: 6});
     var link = "https://www.coingecko.com/en/coins/"+coinASymbol;
     var title = marketCapACoin +" with market cap of "+marketCapBCoin+"";
    
 
 var times = (marketCapB / marketCapA);
 var projectedPrice = times * priceCoinA;
+var displayProjectedPrice = nf.format(projectedPrice)
 var color = "";
 if(times >= 1){
     color="green";
@@ -180,7 +182,7 @@ document.querySelector(".MarketCapDescription").innerHTML =
              "  <div class='col-9 mt-2'>"+
                     "    <p class='font-weight-bold darkWhite' id='heading'> <b>"+title+"</b></p>"+
                     "<small> 1 "+marketCapACoin +" will be: </small><br/>"+
-                     "   <span class='mt-3' style =\"color:"+color+";font-size:20px; \"> $ "+projectedPrice+" </span><button type='button' style=\"font-size:13px;border:0;background:whitesmoke;\" onclick=\"copyToExpectedAmount("+projectedPrice+")\" title='Copy to Expected Amount.'><i class=\"fa fa-copy\"></i></button>                     "+
+                     "   <span class='mt-3' style =\"color:"+color+";font-size:20px; \">"+displayProjectedPrice+" </span><button type='button' style=\"font-size:13px;border:0;background:whitesmoke;\" onclick=\"copyToExpectedAmount("+projectedPrice+")\" title='Copy to Expected Amount.'><i class=\"fa fa-copy\"></i></button>                     "+
                   "  </div>"+
                   "  <div class='col-3 d-flex align-items-center'>"+
                    "     <div class='rounded-circle d-flex w-100' id='circl' > <img class 'center' src='"+imageCoinA+"' style =\"opacity:100%\"  height='70px'  width='70px' alt=''> </div>"+
