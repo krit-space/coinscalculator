@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-  <!-- Theme Made By www.w3schools.com - No Copyright -->
   <title>Crypto Coin Calculator</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +9,7 @@
     content="Basically a simple tool to show you the expected worth of your cryptos - if you invest now or if you had invested.">
 
   <link rel="icon" href="calculator.png">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2666702554288682"
-    crossorigin="anonymous"></script>
+
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="js/coin-cal.js"></script>
@@ -62,7 +60,7 @@
   <div class="content">
 
     <!-- Navbar -->
-    <nav class="navbar navbar-dark bg-primary">
+    <nav class="navbar navbar-dark bg-primary sticky-top">
       <img src="calculator.png" class="img-responsive img-circle" style="display:inline;padding-right: 15px;"
         alt="Calculator" width="50" />
       <a class="navbar-brand" href="#">Coin Calculator</a>
@@ -80,17 +78,22 @@
       </div>
     </nav>
 
-
+    <style>
+      .example_responsive_1 { width: 320px; height: 90px; }
+      @media(min-width: 500px) { .example_responsive_1 { width: 468px; height: 60px; } }
+      @media(min-width: 800px) { .example_responsive_1 { width: 728px; height: 90px; } }
+      </style>
 
     <!-- Ad container 1 -->
     <div class="container-fluid bg-3 text-center">
-      <div class="row" style="display:inline-block;width:100%;height:90px">
+      <div class="row">
         <script async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2666702554288682"
           crossorigin="anonymous"></script>
         <!-- Upper -->
-        <ins class="adsbygoogle" data-ad-client="ca-pub-2666702554288682" data-ad-slot="2800980703"
-          data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <ins class="adsbygoogle " style="display:inline-block;min-width:320px;max-width:970px;width:100%;height:90px" 
+        data-ad-client="ca-pub-2666702554288682" data-ad-slot="2800980703"
+          data-ad-format="fluid" data-full-width-responsive="true"></ins>
         <script>
           (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
@@ -116,7 +119,7 @@
               </div>
               <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
-                  <form>
+                  <form >
                     <center>
                       <img src="calculator.png" class="img-responsive img-circle" style="display:inline"
                         alt="Calculator" width="50" height="50" id="currencyImage"><br />
@@ -383,20 +386,18 @@
 
 
 
-  </div>
-  </div>
+
 
   
-    <!-- Ad container 1 -->
     <div class="container-fluid bg-3 text-center">
-      <div class="row" style="display:inline-block;width:100%;height:90px">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2666702554288682"
-        crossorigin="anonymous"></script>
+      <div class="row" >
+       <!-- Ad container 1    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2666702554288682"
+        crossorigin="anonymous"></script>-->
    <!-- Middle -->
-   <ins class="adsbygoogle"
+   <ins class="adsbygoogle" style="display:inline-block;min-width:320px;max-width:970px;width:100%;height:90px"
         data-ad-client="ca-pub-2666702554288682"
         data-ad-slot="9286304485"
-        data-ad-format="auto"
+        data-ad-format="fluid"
         data-full-width-responsive="true"></ins>
    <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
@@ -421,7 +422,7 @@
       <div class="col-sm-3"><br />
         <img src="images/twitter_icon-icons.com_62751.png" class="img-responsive margin" alt="Image"
           width="25%" /><br />
-        <p>Twitter Handle : <a href="https://twitter.com/D238Avish">@D238Avish</a></p>
+        <p>Twitter Handle : <a href="https://twitter.com/D238Avish">@D238Avish</a>/<a href="https://twitter.com/coinscalculator">@coinscalculator.net</a></p> 
       </div>
 
       <div class="col-sm-3"><br />
@@ -705,6 +706,8 @@
       $(".loader-wrapper").fadeOut(3500);
     });
   </script>
+    </div>
+  </div>
 </body>
 
 </html>

@@ -14,7 +14,7 @@ p {
 
 .bg-1 {
   background-color: #36b0e059;
-  /* Green */
+ /*  Green */
   color: #474e5d;
 }
 
@@ -39,6 +39,7 @@ p {
 .container-fluid {
   padding-top: 30px;
   padding-bottom: 30px;
+  
 }
 
 .navbar {
