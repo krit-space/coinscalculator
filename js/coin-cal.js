@@ -41,7 +41,8 @@ function returnWorth() {
 
 
 async function fetchData() {
-    const response = await fetch('https://raw.githubusercontent.com/krit-space/coin-calculator/main/coins.json').
+    //https://raw.githubusercontent.com/krit-space/coin-calculator/main/coins.json
+    const response = await fetch('https://api.coingecko.com/api/v3/coins/list').
     then(response => response.json())
     .then(obj =>  
    {
@@ -49,6 +50,7 @@ async function fetchData() {
 
     var options = $('#selectCoin').html();
     for (const [key, value] of Object.entries(obj)) {
+        if(value.id != "")
         options += "<option value='"+(value.id)+"'>"+ value.name + " - (" + value.symbol+")</option>";
     }
     $('.selectCoin').html(options);
@@ -111,19 +113,28 @@ async function retrieveCoinDetailsMarketCap() {
         var url = 'https://api.coingecko.com/api/v3/coins/' + currency;
         const response = await fetch(url);
         const obj = await response.json();
-      //  document.getElementById("currencyImage3").src = obj["image"]["large"];
+       document.getElementById("currencyImage3").src = obj["image"]["large"];
         document.querySelector(".currentPrice3").innerHTML = "Current price of 1 <b>" + obj["name"] + " ≈ " + obj["market_data"]["current_price"]["usd"] + " $</b>";
         imageCoinA=obj["image"]["large"];
         coinASymbol = currency;
         marketCapACoin=obj["name"];
         priceCoinA = obj["market_data"]["current_price"]["usd"];
         marketCapA = obj["market_data"]["market_cap"]["usd"];
-       document.querySelector(".currentMarketCap").innerHTML = nf.format(obj["market_data"]["market_cap"]["usd"]);
+       document.querySelector(".currentMarketCap").innerHTML = obj["market_data"]["market_cap"]["usd"] == 0 ? 
+       "<input type='text' id='customMC' onkeyup='realtimeFormatting()' style=\"width:100%;\"><br><br>" : nf.format(obj["market_data"]["market_cap"]["usd"]);
        document.querySelector(".coinARank").innerHTML = obj["market_cap_rank"] == null ? "N/A": obj["market_cap_rank"];;
     }
+}
 
+function realtimeFormatting(){
+    var insertedValue = document.getElementById("customMC").value;
+        var num = insertedValue.replace(/[^\d]/g, "");
+        var num2 = num.split(/(?=(?:\d{3})+$)/).join(",");
+        document.getElementById("customMC").value=num2;
+    
 
 }
+
 
 async function retrieveCoinDetailsMarketCapB() {
     var currency = document.querySelector(".marketCapCoinB").value;
@@ -159,7 +170,9 @@ function returnCoinWorth(){
   var nf = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD',maximumFractionDigits: 6});
     var link = "https://www.coingecko.com/en/coins/"+coinASymbol;
     var title = marketCapACoin +" with market cap of "+marketCapBCoin+"";
-   
+if(marketCapA==0)  {
+    marketCapA = Number.parseInt(document.getElementById('customMC').value.replace(",",""));
+}
 
 var times = (marketCapB / marketCapA);
 var projectedPrice = times * priceCoinA;
