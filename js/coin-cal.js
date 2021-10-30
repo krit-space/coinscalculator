@@ -3,6 +3,7 @@ var currentPriceOfCoinSelected;
 window.onload = function () {
     fetchData();
     inputPastDate.max = new Date().toISOString().split("T")[0];
+    $(".amzn-native-container").css({ 'marging' : '0' });
 }
 
 function returnWorth() {
