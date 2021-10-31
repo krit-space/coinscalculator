@@ -71,18 +71,26 @@ async function fetchData() {
 }
 
 
-
+var circulatingSupplyp1 = 0;
+var currentPricep1 = 0;
 async function retrieveCoinDetailsInvest() {
+
+    document.getElementById("inputInvestAmount").value=null;
+    document.getElementById("inputDesiredAmount").value=null;
+    document.getElementById("projectedMC").innerHTML = 'Expected MC: - ';
     var currency = document.querySelector(".selectCoin").value;
     if (currency != "null") {
+        var nf = Intl.NumberFormat();
         var url = 'https://api.coingecko.com/api/v3/coins/' + currency;
         const response = await fetch(url);
         const obj = await response.json();
+        circulatingSupplyp1 = obj["market_data"]["circulating_supply"] == 0 ? "0" : obj["market_data"]["circulating_supply"];
+        currentPricep1 = obj["market_data"]["current_price"]["usd"];
         document.getElementById("currencyImage").src = obj["image"]["large"];
         document.querySelector(".currentPrice").innerHTML = "<u>Current price of 1 <b>" + obj["name"] + " ≈ " + obj["market_data"]["current_price"]["usd"] + " $</b></u>";
         currentPriceOfCoinSelected = obj["market_data"]["current_price"]["usd"];
-        document.querySelector(".coinMcap").innerHTML = obj["market_cap_rank"] == null ? "N/A": obj["market_cap_rank"];
-
+        document.querySelector(".coinMcapRank").innerHTML = obj["market_cap_rank"] == null ? "N/A": obj["market_cap_rank"];
+        document.querySelector(".coinMcap").innerHTML = obj["market_data"]["market_cap"]["usd"] == 0 ? "N/A" : nf.format(obj["market_data"]["market_cap"]["usd"]);
         calculateAmountCoin();
     }
 }
@@ -92,7 +100,18 @@ function calculateAmountCoin() {
     var nf = Intl.NumberFormat();
     inputAmountToInvest = document.querySelector(".inputAmountToInvest").value;
     document.getElementById("coinAmount").innerHTML = 'Coin(s): ' +  nf.format(inputAmountToInvest / currentPriceOfCoinSelected) + '</font>';
+}
 
+function ProjectedMC(){
+    var nf = Intl.NumberFormat();
+    var expectedAmount = document.getElementById("inputDesiredAmount").value;
+    if(circulatingSupplyp1 != "0"){
+       var expectedMC = circulatingSupplyp1 * expectedAmount;
+       var times = expectedAmount / currentPricep1;
+        document.getElementById("projectedMC").innerHTML = 'Expected MC: <b><u>$' + nf.format(expectedMC)+"</u></b>, pulling a <b><u>"+nf.format(times)+"x</u></b>";
+    } else {
+        document.getElementById("projectedMC").innerHTML = "Expected MC: N/A :(";
+    }
 }
 
 async function retrieveCoinDetailsInvested() {
@@ -136,6 +155,15 @@ function realtimeFormatting(){
 
 }
 
+
+function realtimeFormattingCustomcoinMcap(){
+    var insertedValue = document.getElementById("customcoinMcap").value;
+        var num = insertedValue.replace(/[^\d]/g, "");
+        var num2 = num.split(/(?=(?:\d{3})+$)/).join(",");
+        document.getElementById("customcoinMcap").value=num2;
+    
+
+}
 
 async function retrieveCoinDetailsMarketCapB() {
     var currency = document.querySelector(".marketCapCoinB").value;
