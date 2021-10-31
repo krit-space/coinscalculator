@@ -75,9 +75,11 @@ var circulatingSupplyp1 = 0;
 var currentPricep1 = 0;
 async function retrieveCoinDetailsInvest() {
 
+    document.getElementById("displayNetWorthAmount").value=null;
     document.getElementById("inputInvestAmount").value=null;
     document.getElementById("inputDesiredAmount").value=null;
     document.getElementById("projectedMC").innerHTML = 'Expected MC: - ';
+    document.getElementById("pnlAmount").innerHTML = null;
     var currency = document.querySelector(".selectCoin").value;
     if (currency != "null") {
         var nf = Intl.NumberFormat();
