@@ -94,8 +94,8 @@
   background-color: #2f2f2f;
 }
 </style>
-
-<center>
+<!--
+  <center>
   <div >
   <script type="text/javascript">
     amzn_assoc_placement = "adunit0";
@@ -114,6 +114,7 @@
     <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
   </div>
     </center>
+-->
 
     <!-- First Container -->
     <div class="container-fluid bg-1 text-left">
@@ -148,11 +149,21 @@
                       </select>
 
                       <div class="row ">
-                        <div class="col-sm-6">
-                          <small class="form-text text-muted" style="text-align: left;">Market Cap Rank: <span
-                              class="coinMcap"></span> </small>
-                        </div>
-                      </div>
+
+                      
+                          <div class="col-sm-6">
+                            <small class="form-text text-muted" style="text-align: left;">MC Rank: <span
+                                class="coinMcapRank"></span> </small>
+                          </div>
+                          <div class="col-sm-6">
+                            <small class="form-text text-muted" style="text-align: left;">Current MC: <span
+                              class="coinMcap"></span>   </small>
+                              </div>
+                          </div>
+                 
+
+
+
 
 
 
@@ -180,13 +191,19 @@
                     </div>
 
                     <div class="form-group">
-                      <label for="inputForAmount">Expected Amount</label> <small> (Expected price of one coin)</small>
+                      <label for="inputForAmount">Expected Price</label> <small> (Expected price of one coin)</small>
                       <div class="input-group mb-2">
                         <div class="input-group-prepend">
                           <div class="input-group-text">$</div>
                         </div>
                         <input type="number" class="form-control" id="inputDesiredAmount"
-                          aria-describedby="investAmountHelp" placeholder="0.00">
+                          aria-describedby="investAmountHelp" placeholder="0.00" onchange="ProjectedMC()">
+                      </div>
+                      <div class="row ">
+                        <div class="col-sm-6">
+                          <span id="projectedMC" style="font-size:10px;"></span>
+                        </div>
+
                       </div>
                     </div>
 
@@ -397,7 +414,7 @@
       <p>🛈 <b><u>Market Cap Calculator!</u> : </b> To see if market cap target of a coin/token is legit!</p>
 
     </div>
-
+<!--
     <center>
       <div >
         <script type="text/javascript">
@@ -416,7 +433,7 @@
           <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
       </div>
         </center>
-
+-->
 
   <a id="ping_me"></a>
   <!-- Third Container (Grid) -->
