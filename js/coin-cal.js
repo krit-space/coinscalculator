@@ -4,6 +4,7 @@ window.onload = function () {
     fetchData();
     inputPastDate.max = new Date().toISOString().split("T")[0];
     $(".amzn-native-container").css({ 'margin' : '0' });
+    $('#exchangetable').DataTable();
 }
 
 function returnWorth() {
@@ -74,7 +75,7 @@ async function fetchData() {
 var circulatingSupplyp1 = 0;
 var currentPricep1 = 0;
 async function retrieveCoinDetailsInvest() {
-    var markets="";
+    var markets=null;
     document.getElementById("displayNetWorthAmount").value=null;
     document.getElementById("inputInvestAmount").value=null;
     document.getElementById("inputDesiredAmount").value=null;
@@ -93,12 +94,14 @@ async function retrieveCoinDetailsInvest() {
         currentPriceOfCoinSelected = obj["market_data"]["current_price"]["usd"];
         document.querySelector(".coinMcapRank").innerHTML = obj["market_cap_rank"] == null ? "N/A": obj["market_cap_rank"];
         document.querySelector(".coinMcap").innerHTML = obj["market_data"]["market_cap"]["usd"] == 0 ? "N/A" : nf.format(obj["market_data"]["market_cap"]["usd"]);
-        document.getElementById("modalbtn").innerHTML = "<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModal\">See Exchanges ➥ </a>"
+
+        document.getElementById("modalbtn").innerHTML = "<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModal\">See Exchanges ➥ </a>";
         document.getElementById("exampleModalLabel").innerHTML = obj["name"]+" is available on "+obj["tickers"].length+" exchanges";
-        markets = "<table border = 1><tr><th>Exchange</th><th>Pair</th><th>Trust Score</th></tr>";
+        markets = "<table id='exchangetable' class='table table-hover'><thead><tr><th scope='col'>Exchange</th><th scope='col'>Pair</th><th scope='col'>Trust Score</th></tr></thead>";
         for( let i=0 ; i< (obj["tickers"]).length;i++ ){
             if(obj["tickers"][i]["base"].length <= 10){
-             markets += "<tr><td><a target=\"_blank\" href='"+obj["tickers"][i]["trade_url"]+"'>"+obj["tickers"][i]["market"]["name"]+
+
+             markets = markets + "<tr><td><a target=\"_blank\" href='"+obj["tickers"][i]["trade_url"]+"'>"+obj["tickers"][i]["market"]["name"]+
              "</a></td><td>"+obj["tickers"][i]["base"]+"/"+obj["tickers"][i]["target"]+"</td><td style=\"text-align:center;\"><span class='dot' style=\"background-color:"+obj["tickers"][i]["trust_score"]+";\"></span></td></tr>";
              }
         }
@@ -108,10 +111,10 @@ async function retrieveCoinDetailsInvest() {
         
         markets +=  +"</table>";
 
-        document.getElementById("exchanges").innerHTML = markets;
+        document.getElementById("exchanges").innerHTML = markets.replace("NaN","");
 
 
-
+        $('#exchangetable').DataTable();
         calculateAmountCoin();
     }
 }
