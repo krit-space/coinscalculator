@@ -46,9 +46,13 @@
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/css/selectize.bootstrap4.css" />
 
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
+    </script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js">
+    </script>
 
-
-
+</script>
 </head>
 
 <body>
@@ -150,17 +154,13 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Exchanges</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-         
-        </button>
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
       </div>
-      <div class="modal-body">
-        <span aria-hidden="true" id="exchanges" style="font-size: smaller;"></span>
+      <div class="modal-body" id="exchanges" style="font-size: smaller;">
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -466,7 +466,7 @@
           <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
       </div>
         </center>
-     
+   
 
   <a id="ping_me"></a>
   <!-- Third Container (Grid) -->
