@@ -307,3 +307,10 @@ width: 50%;
 		height:250px;
 	}
 }
+
+.dot {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  display: inline-block;
+}
