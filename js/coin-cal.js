@@ -99,7 +99,7 @@ async function retrieveCoinDetailsInvest() {
         document.getElementById("exampleModalLabel").innerHTML = obj["name"]+" is available on "+obj["tickers"].length+" exchanges";
         markets = "<table id='exchangetable' class='table table-hover'><thead><tr><th scope='col'>Exchange</th><th scope='col'>Pair</th><th scope='col'>Trust Score</th></tr></thead>";
         for( let i=0 ; i< (obj["tickers"]).length;i++ ){
-            if(obj["tickers"][i]["base"].length <= 10){
+            if(obj["tickers"][i]["base"].length <= 10 && obj["tickers"][i]["target"].length <= 10){
 
              markets = markets + "<tr><td><a target=\"_blank\" href='"+obj["tickers"][i]["trade_url"]+"'>"+obj["tickers"][i]["market"]["name"]+
              "</a></td><td>"+obj["tickers"][i]["base"]+"/"+obj["tickers"][i]["target"]+"</td><td style=\"text-align:center;\"><span class='dot' style=\"background-color:"+obj["tickers"][i]["trust_score"]+";\"></span></td></tr>";
