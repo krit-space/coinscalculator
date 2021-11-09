@@ -72,14 +72,14 @@ async function fetchData() {
     $('.selectCoin').html(options);
     $("#selectCoin").selectize({sortField:"text",});
 
-    $('.selectedCoin').html(options);
-    $("#selectedCoin").selectize({sortField:"text",});
+ //   $('.selectedCoin').html(options);
+ //   $("#selectedCoin").selectize({sortField:"text",});
 
-    $('.marketCapCoin').html(options);
-    $("#marketCapCoin").selectize({sortField:"text",});
+ //   $('.marketCapCoin').html(options);
+  //  $("#marketCapCoin").selectize({sortField:"text",});
 
-    $('.marketCapCoinB').html(options);
-    $("#marketCapCoinB").selectize({sortField:"text",});
+   // $('.marketCapCoinB').html(options);
+  //  $("#marketCapCoinB").selectize({sortField:"text",});
 });
 }
 
