@@ -292,7 +292,7 @@ width: 50%;
 	width:100px;
 	height:100px;
 	animation-name: spin;
-	animation:spin 4s linear infinite;
+	animation:spin 2s linear infinite;
 }
 @keyframes spin{ 
 	0% { -webkit-transform: rotate(0deg);transform:rotate(0deg);}
