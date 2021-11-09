@@ -83,9 +83,6 @@ async function fetchData() {
 });
 }
 
-function test(){
-    alert("lol");
-}
 
 
 var circulatingSupplyp1 = 0;
