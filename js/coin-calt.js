@@ -5,11 +5,11 @@ window.onload = function () {
     inputPastDate.max = new Date().toISOString().split("T")[0];
     $(".amzn-native-container").css({ 'margin' : '0' });
     $('#exchangetable').DataTable();
-    $('.selectCoin').select2();
-    $('.selectCoin').select2();
-     $('.selectedCoin').select2();
-     $('.marketCapCoin').select2();
-     $('.marketCapCoinB').select2();
+   // $('.selectCoin').select2();
+   // $('.selectCoin').select2();
+    // $('.selectedCoin').select2();
+    // $('.marketCapCoin').select2();
+    // $('.marketCapCoinB').select2();
 }
 
 function returnWorth() {
@@ -47,6 +47,9 @@ function returnWorth() {
 }
 
 
+
+
+var options;
 async function fetchData() {
     //https://raw.githubusercontent.com/krit-space/coin-calculator/main/coins.json
     //https://api.coingecko.com/api/v3/coins/list
@@ -54,7 +57,7 @@ async function fetchData() {
     then(response => response.json())
     .then(obj =>  
    {
-    var options = $('#selectCoin').html();
+    options= $('#selectCoin').html();
     for (const [key, value] of Object.entries(obj)) {
         if(value.id == ""  ||  value.name.includes("1X",0) ||
           value.name.includes("2X",0)  ||
@@ -67,19 +70,21 @@ async function fetchData() {
     }
     }
     $('.selectCoin').html(options);
-   // $("#selectCoin").selectize({sortField:"text",});
+    $("#selectCoin").selectize({sortField:"text",});
 
     $('.selectedCoin').html(options);
-  //  $("#selectedCoin").selectize({sortField:"text",});
+    $("#selectedCoin").selectize({sortField:"text",});
 
     $('.marketCapCoin').html(options);
-  //  $("#marketCapCoin").selectize({sortField:"text",});
+    $("#marketCapCoin").selectize({sortField:"text",});
 
     $('.marketCapCoinB').html(options);
-  //  $("#marketCapCoinB").selectize({sortField:"text",});
+    $("#marketCapCoinB").selectize({sortField:"text",});
 });
+}
 
-
+function test(){
+    alert("lol");
 }
 
 
