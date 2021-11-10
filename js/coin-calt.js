@@ -62,15 +62,14 @@ async function fetchData() {
         if(value.id == ""  ||  value.name.includes("1X",0) ||
           value.name.includes("2X",0)  ||
           value.name.includes("3X",0) ||  value.name.includes("0.5X",0)
-        
+          ||  value.name.includes("RealT",0)
         ){// do not add
         }
         else{
         options += "<option value='"+(value.id)+"'>"+ value.name + " - (" + value.symbol+")</option>";
     }
     }
-    $('.selectCoin').html(options);
-    $("#selectCoin").selectize({sortField:"text",});
+
 
  //   $('.selectedCoin').html(options);
  //   $("#selectedCoin").selectize({sortField:"text",});
@@ -81,6 +80,8 @@ async function fetchData() {
    // $('.marketCapCoinB').html(options);
   //  $("#marketCapCoinB").selectize({sortField:"text",});
 });
+$('.selectCoin').html(options);
+$("#selectCoin").selectize({sortField:"text",});
 }
 
 
