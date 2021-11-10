@@ -81,7 +81,10 @@ async function fetchData() {
   //  $("#marketCapCoinB").selectize({sortField:"text",});
 });
 $('.selectCoin').html(options);
-$("#selectCoin").selectize({sortField:"text",});
+$('.selectCoin').selectize({
+    createFilter: function(input) { return input.length >= 3; }
+});
+
 }
 
 
