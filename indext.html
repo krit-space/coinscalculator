@@ -12,7 +12,7 @@
 
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <script src="js/coin-calt.js"></script>
+  <script src="js/coin-cal.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css" />
   <!-- <script src="js/coin-cal.min.js"></script>-->
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -28,25 +28,14 @@
     gtag('config', 'G-12VDQGCXMR');
   </script>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
-  </script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
-  </script>
-
-
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/js/standalone/selectize.min.js"></script>
-  <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/css/selectize.bootstrap4.css" />
-
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script type="text/javascript"  src="js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript"  src="js/popper.min.js"> </script>
+  <script type="text/javascript"  src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/selectize.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/selectize.bootstrap4.css" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js">
     </script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js">
@@ -54,9 +43,6 @@
 
 </script>
 <meta name="a.validate.01" content="c4cc7909618afa75f1bc9032b94da80b2d31" />
-
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 </head>
 
@@ -103,28 +89,9 @@
   background-color: #2f2f2f;
 }
 </style>
-<!--
-  <center>
-  <div >
-  <script type="text/javascript">
-    amzn_assoc_placement = "adunit0";
-    amzn_assoc_tracking_id = "k238-20";
-    amzn_assoc_ad_mode = "search";
-    amzn_assoc_ad_type = "smart";
-    amzn_assoc_marketplace = "amazon";
-    amzn_assoc_region = "US";
-    amzn_assoc_default_search_phrase = "cold crypto wallets";
-    amzn_assoc_default_category = "Electronics";
-    amzn_assoc_linkid = "77f4c79ea61997ccbd89f11daba7837c";
-    amzn_assoc_design = "in_content";
-    amzn_assoc_title = "";
-    amzn_assoc_default_browse_node = "172282";
-    </script>
-    <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
-  </div>
-    </center>
 
--->
+
+
     
 
 
@@ -185,19 +152,10 @@
                     <div class="form-group">
                       <label for="selectCoin">Currency</label> <small>(In which currency you want to invest)</small>
                       <select class="selectCoin form-control" onchange="retrieveCoinDetailsInvest()" id="selectCoin"
-                        style="line-height: 1.5;" >
+                        style="line-height: 1.5;">
                         <option value="" style="font-size: 15px;">Select a coin</option>
                       </select>
 
-                      <div id = "padded">
-                        <input id="inputdatalist" name="inputdatalist" list="list"  />
-                        <datalist id="list" style="width: 100%;">
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                            </datalist>
-
-                          </div>
                       <div class="row ">
 
                       
@@ -440,8 +398,7 @@
       </div>
     </div>
 
-
-
+  
 
     <a id="what_am_i"></a>
 
@@ -461,26 +418,9 @@
       <p>🛈 <b><u>Market Cap Calculator!</u> : </b> To see if market cap target of a coin/token is legit!</p>
 
     </div>
-<!--
-    <center>
-      <div >
-        <script type="text/javascript">
-          amzn_assoc_placement = "adunit0";
-          amzn_assoc_tracking_id = "k238-20";
-          amzn_assoc_ad_mode = "search";
-          amzn_assoc_ad_type = "smart";
-          amzn_assoc_marketplace = "amazon";
-          amzn_assoc_region = "US";
-          amzn_assoc_default_search_phrase = "Crypto currency";
-          amzn_assoc_default_category = "All";
-          amzn_assoc_linkid = "77f4c79ea61997ccbd89f11daba7837c";
-          amzn_assoc_design = "in_content";
-          amzn_assoc_title = "";
-          </script>
-          <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
-      </div>
-        </center>
-   -->
+
+
+
 
   <a id="ping_me"></a>
   <!-- Third Container (Grid) -->
