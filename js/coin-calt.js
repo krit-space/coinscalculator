@@ -5,11 +5,6 @@ window.onload = function () {
     inputPastDate.max = new Date().toISOString().split("T")[0];
     $(".amzn-native-container").css({ 'margin' : '0' });
     $('#exchangetable').DataTable();
-   // $('.selectCoin').select2();
-   // $('.selectCoin').select2();
-    // $('.selectedCoin').select2();
-    // $('.marketCapCoin').select2();
-    // $('.marketCapCoinB').select2();
 }
 
 function returnWorth() {
@@ -47,42 +42,34 @@ function returnWorth() {
 }
 
 
-
-
-var options;
 async function fetchData() {
-  
+    //https://raw.githubusercontent.com/krit-space/coin-calculator/main/coins.json
+    const response = await fetch('https://api.coingecko.com/api/v3/coins/list').
+    then(response => response.json())
+    .then(obj =>  
+   {
 
-var padded = document.getElementById("padded");
-var input = document.getElementById("inputdatalist");
 
-//input.addEventListener("mouseover", evt => evt.stopImmediatePropagation());
-padded.addEventListener("mouseover", async evt => {
-  console.log(evt.currentTarget);
-  let datalist = document.getElementById("list");
-  datalist.innerHTML = "";
-  const response = await fetch("https://api.coingecko.com/api/v3/coins/list");
-  const data = await response.json();
-  data.forEach(item => {
-    if(item.id == ""  ||  item.name.includes("1X",0) ||
-    item.name.includes("2X",0)  ||
-    item.name.includes("3X",0) ||  item.name.includes("0.5X",0)
-    ||  item.name.includes("RealT",0)
-  ){// do not add
-  }
-  else{
-    let option = document.createElement("option");
-    option.setAttribute("data-id", item.id);
-    option.value = item.name;
+    var options = $('#selectCoin').html();
+    for (const [key, value] of Object.entries(obj)) {
+        if(value.id != "")
+        options += "<option value='"+(value.id)+"'>"+ value.name + " - (" + value.symbol+")</option>";
+    }
+    $('.selectCoin').html(options);
+    $("#selectCoin").selectize({sortField:"text",});
 
-    datalist.appendChild(option);
-  }
-  });
-  console.log("responded");
+   // $('.selectedCoin').html(options);
+   // $("#selectedCoin").selectize({sortField:"text",});
+
+  //  $('.marketCapCoin').html(options);
+  //  $("#marketCapCoin").selectize({sortField:"text",});
+
+ //   $('.marketCapCoinB').html(options);
+ //   $("#marketCapCoinB").selectize({sortField:"text",});
 });
 
-}
 
+}
 
 
 var circulatingSupplyp1 = 0;
