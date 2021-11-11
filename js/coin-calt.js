@@ -51,38 +51,34 @@ function returnWorth() {
 
 var options;
 async function fetchData() {
-    //https://raw.githubusercontent.com/krit-space/coin-calculator/main/coins.json
-    //https://api.coingecko.com/api/v3/coins/list
-    const response = await fetch('https://api.coingecko.com/api/v3/coins/list').
-    then(response => response.json())
-    .then(obj =>  
-   {
-    options= $('#selectCoin').html();
-    for (const [key, value] of Object.entries(obj)) {
-        if(value.id == ""  ||  value.name.includes("1X",0) ||
-          value.name.includes("2X",0)  ||
-          value.name.includes("3X",0) ||  value.name.includes("0.5X",0)
-          ||  value.name.includes("RealT",0)
-        ){// do not add
-        }
-        else{
-        options += "<option value='"+(value.id)+"'>"+ value.name + " - (" + value.symbol+")</option>";
-    }
-    }
+  
 
+var padded = document.getElementById("padded");
+var input = document.getElementById("inputdatalist");
 
- //   $('.selectedCoin').html(options);
- //   $("#selectedCoin").selectize({sortField:"text",});
+//input.addEventListener("mouseover", evt => evt.stopImmediatePropagation());
+padded.addEventListener("mouseover", async evt => {
+  console.log(evt.currentTarget);
+  let datalist = document.getElementById("list");
+  datalist.innerHTML = "";
+  const response = await fetch("https://api.coingecko.com/api/v3/coins/list");
+  const data = await response.json();
+  data.forEach(item => {
+    if(item.id == ""  ||  item.name.includes("1X",0) ||
+    item.name.includes("2X",0)  ||
+    item.name.includes("3X",0) ||  item.name.includes("0.5X",0)
+    ||  item.name.includes("RealT",0)
+  ){// do not add
+  }
+  else{
+    let option = document.createElement("option");
+    option.setAttribute("data-id", item.id);
+    option.value = item.name;
 
- //   $('.marketCapCoin').html(options);
-  //  $("#marketCapCoin").selectize({sortField:"text",});
-
-   // $('.marketCapCoinB').html(options);
-  //  $("#marketCapCoinB").selectize({sortField:"text",});
-});
-$('.selectCoin').html(options);
-$('.selectCoin').selectize({
-    createFilter: function(input) { return input.length >= 3; }
+    datalist.appendChild(option);
+  }
+  });
+  console.log("responded");
 });
 
 }
