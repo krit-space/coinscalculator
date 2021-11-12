@@ -12,7 +12,7 @@
 
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <script src="js/coin-cal.js"></script>
+  <script src="js/coin-calt.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css" />
   <!-- <script src="js/coin-cal.min.js"></script>-->
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -144,17 +144,57 @@
   </div>
 </div>
 
-
 <!--modal-->
 
                     </center>
-
+                    
+                   
                     <div class="form-group">
                       <label for="selectCoin">Currency</label> <small>(In which currency you want to invest)</small>
-                      <select class="selectCoin form-control" onchange="retrieveCoinDetailsInvest()" id="selectCoin"
+                      <select class="selectCoin form-control" onchange="retrieveCoinDetailsInvest()" id="selectCoin" name="selectCoin"
                         style="line-height: 1.5;">
                         <option value="" style="font-size: 15px;">Select a coin</option>
                       </select>
+
+                      <script>
+                       $('#selectCoin').selectize({
+                          valueField: 'id',
+                          labelField: 'name',
+                          searchField: 'id',
+                          options: [],
+                          create: false,
+                          render: {
+                            option: function(item, escape) {
+                              var actors = [];
+                              for (var i = 0, n = item.length; i < n; i++) {
+                                actors.push('<span>' + escape(item[i].name) + '</span>');
+                              }
+
+                              return '<div>' +
+                                  '<span class="name" id="id" onclick="retrieveCoinDetailsInvest()">(' + escape(item.symbol)+') - '+escape(item.name) + '</span>' +
+                              '</div>';
+                            }
+                          },
+                          load: function(query, callback) {
+                            if (!query.length) return callback();
+                            $.ajax({
+                              url: 'https://coinscalbridge.000webhostapp.com/filter.php',
+                              type: 'GET',
+                              responseType:'application/json',
+                              data: {
+                                q: query,
+                              },
+                              error: function() {
+                                callback();
+                              },
+                              success: function(res) {
+                                console.log(res);
+                                callback(res);
+                              }
+                            });
+                          }
+                        });
+                      </script>
 
                       <div class="row ">
 
