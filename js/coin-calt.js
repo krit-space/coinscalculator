@@ -1,11 +1,47 @@
 var currentPriceOfCoinSelected;
 
 window.onload = function () {
-    fetchData();
+    //fetchData();
     inputPastDate.max = new Date().toISOString().split("T")[0];
     $(".amzn-native-container").css({ 'margin' : '0' });
     $('#exchangetable').DataTable();
+
+/*
+    $('#selectCoin').selectize({
+        valueField: 'id',
+        labelField: 'name',
+        searchField: 'name',
+        options: [],
+        load: function(query, callback) {
+          if (!query.length) return callback();
+          $.ajax({
+              url: 'https://coinscalbridge.000webhostapp.com/filter.php',
+              type: 'GET',
+              dataType: 'json',
+              data: {
+                  q: query,
+              },
+              error: function() {
+                  callback();
+              },
+              success: function(res) {
+                  callback(res);
+              }
+          });
+        }
+      });
+     
+      $("input[id='selectCoin']")[0].selectize.on('type', function(){
+        alert();
+    });
+    $('selectCoin').selectize({
+        valueField: 'id',
+        labelField: 'name'
+      });*/
+      
 }
+
+
 
 function returnWorth() {
     var currency = document.querySelector(".selectCoin").value;
@@ -55,8 +91,8 @@ async function fetchData() {
         if(value.id != "")
         options += "<option value='"+(value.id)+"'>"+ value.name + " - (" + value.symbol+")</option>";
     }
-    $('.selectCoin').html(options);
-    $("#selectCoin").selectize({sortField:"text",});
+  //  $('.selectCoin').html(options);
+   // $("#selectCoin").selectize({sortField:"text",});
 
    // $('.selectedCoin').html(options);
    // $("#selectedCoin").selectize({sortField:"text",});
