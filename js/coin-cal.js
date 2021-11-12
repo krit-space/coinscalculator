@@ -1,11 +1,14 @@
 var currentPriceOfCoinSelected;
 
 window.onload = function () {
-    fetchData();
     inputPastDate.max = new Date().toISOString().split("T")[0];
     $(".amzn-native-container").css({ 'margin' : '0' });
     $('#exchangetable').DataTable();
+
+
 }
+
+
 
 function returnWorth() {
     var currency = document.querySelector(".selectCoin").value;
@@ -42,34 +45,6 @@ function returnWorth() {
 }
 
 
-async function fetchData() {
-    //https://raw.githubusercontent.com/krit-space/coin-calculator/main/coins.json
-    const response = await fetch('https://api.coingecko.com/api/v3/coins/list').
-    then(response => response.json())
-    .then(obj =>  
-   {
-
-
-    var options = $('#selectCoin').html();
-    for (const [key, value] of Object.entries(obj)) {
-        if(value.id != "")
-        options += "<option value='"+(value.id)+"'>"+ value.name + " - (" + value.symbol+")</option>";
-    }
-    $('.selectCoin').html(options);
-    $("#selectCoin").selectize({sortField:"text",});
-
-    $('.selectedCoin').html(options);
-    $("#selectedCoin").selectize({sortField:"text",});
-
-    $('.marketCapCoin').html(options);
-    $("#marketCapCoin").selectize({sortField:"text",});
-
-    $('.marketCapCoinB').html(options);
-    $("#marketCapCoinB").selectize({sortField:"text",});
-});
-
-
-}
 
 
 var circulatingSupplyp1 = 0;
