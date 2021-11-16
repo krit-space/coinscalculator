@@ -1,11 +1,14 @@
 var currentPriceOfCoinSelected;
 
 window.onload = function () {
-    fetchData();
     inputPastDate.max = new Date().toISOString().split("T")[0];
     $(".amzn-native-container").css({ 'margin' : '0' });
     $('#exchangetable').DataTable();
+
+
 }
+
+
 
 function returnWorth() {
     var currency = document.querySelector(".selectCoin").value;
@@ -44,42 +47,6 @@ function returnWorth() {
 
 
 
-var options;
-async function fetchData() {
-  
-
-var padded = document.getElementById("padded");
-var input = document.getElementById("inputdatalist");
-
-input.addEventListener("mouseover", evt => evt.stopImmediatePropagation());
-padded.addEventListener("mouseover", async evt => {
-  console.log(evt.currentTarget);
-  let datalist = document.getElementById("list");
-  datalist.innerHTML = "";
-  const response = await fetch("https://api.coingecko.com/api/v3/coins/list");
-  const data = await response.json();
-  data.forEach(item => {
-    if(item.id == ""  ||  item.name.includes("1X",0) ||
-    item.name.includes("2X",0)  ||
-    item.name.includes("3X",0) ||  item.name.includes("0.5X",0)
-    ||  item.name.includes("RealT",0)
-  ){// do not add
-  }
-  else{
-    let option = document.createElement("option");
-    option.setAttribute("data-id", item.id);
-    option.value = item.name;
-
-    datalist.appendChild(option);
-  }
-  });
-  console.log("responded");
-});
-
-}
-
-
-
 var circulatingSupplyp1 = 0;
 var currentPricep1 = 0;
 async function retrieveCoinDetailsInvest() {
@@ -113,10 +80,14 @@ async function retrieveCoinDetailsInvest() {
              "</a></td><td>"+obj["tickers"][i]["base"]+"/"+obj["tickers"][i]["target"]+"</td><td style=\"text-align:center;\"><span class='dot' style=\"background-color:"+obj["tickers"][i]["trust_score"]+";\"></span></td></tr>";
              }
         }
-  
+        
+        
+        
+        
         markets +=  +"</table>";
 
         document.getElementById("exchanges").innerHTML = markets.replace("NaN","");
+
 
         $('#exchangetable').DataTable();
         calculateAmountCoin();
