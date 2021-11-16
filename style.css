@@ -345,3 +345,5 @@ width: 50%;
   -webkit-animation: spin-horizontal 2s infinite linear;
   animation: spin-horizontal 2s infinite linear;
 }
+
+html {-webkit-text-size-adjust:none}
