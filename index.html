@@ -330,10 +330,6 @@
                         create: false,
                         render: {
                           option: function (item, escape) {
-                            var actors = [];
-                            for (var i = 0, n = item.length; i < n; i++) {
-                              actors.push('<span>' + escape(item[i].name) + '</span>');
-                            }
 
                             return '<div>' +
                               '<span class="name" id="id" >(' + escape(item.symbol) + ') - ' + escape(item.name) +
@@ -393,11 +389,6 @@
                         create: false,
                         render: {
                           option: function (item, escape) {
-                            var actors = [];
-                            for (var i = 0, n = item.length; i < n; i++) {
-                              actors.push('<span>' + escape(item[i].name) + '</span>');
-                            }
-
                             return '<div>' +
                               '<span class="name" id="id" >(' + escape(item.symbol) + ') - ' + escape(item.name) +
                               '</span>' +
@@ -488,11 +479,6 @@
                         create: false,
                         render: {
                           option: function (item, escape) {
-                            var actors = [];
-                            for (var i = 0, n = item.length; i < n; i++) {
-                              actors.push('<span>' + escape(item[i].name) + '</span>');
-                            }
-
                             return '<div>' +
                               '<span class="name" id="id" >(' + escape(item.symbol) + ') - ' + escape(item.name) +
                               '</span>' +
@@ -615,7 +601,7 @@
           amzn_assoc_title = "";
           amzn_assoc_default_browse_node = "172282";
         </script>
-        <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+        <script src="//z-na.amazon-adsystem.com/widgets/onejs"></script>
       </div>
 
       <div>
@@ -631,7 +617,7 @@
           amzn_assoc_design = "in_content";
           amzn_assoc_title = "";
         </script>
-        <script src="//z-na.amazon-adsystem.com/widgets/onejs?MarketPlace=US"></script>
+        <script src="//z-na.amazon-adsystem.com/widgets/onejs"></script>
       </div>
     </center>
 
