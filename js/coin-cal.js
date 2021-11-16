@@ -2,7 +2,7 @@ var currentPriceOfCoinSelected;
 
 window.onload = function () {
     inputPastDate.max = new Date().toISOString().split("T")[0];
-    $(".amzn-native-container").css({ 'margin' : '0' });
+   // $(".amzn-native-container").css({ 'margin' : '0' });
     $('#exchangetable').DataTable();
 
 
