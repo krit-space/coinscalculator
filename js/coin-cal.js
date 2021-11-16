@@ -141,7 +141,7 @@ async function retrieveCoinDetailsMarketCap() {
         marketCapA = obj["market_data"]["market_cap"]["usd"];
        document.querySelector(".currentMarketCap").innerHTML = obj["market_data"]["market_cap"]["usd"] == 0 ? 
        "<input type='text' id='customMC' onkeyup='realtimeFormatting()' style=\"width:100%;\"><br><br>" : nf.format(obj["market_data"]["market_cap"]["usd"]);
-       document.querySelector(".coinARank").innerHTML = obj["market_cap_rank"] == null ? "N/A": obj["market_cap_rank"];;
+       document.querySelector(".coinARank").innerHTML = obj["market_cap_rank"] == null ? "N/A": obj["market_cap_rank"];
     }
 }
 
