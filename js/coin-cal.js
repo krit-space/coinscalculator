@@ -42,6 +42,7 @@ function returnWorth() {
         };
         request.send();
     }
+    trend1();
 }
 
 
@@ -306,4 +307,16 @@ async function returnWorth2() {
     }
 }
 
+
+function trend1() {
+    let x = document.querySelector(".selectCoin").value;
+    $.ajax({
+         type: "POST",
+         url: 'https://coinscalbridge.000webhostapp.com/trend.php',
+         headers: {
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          },
+          body: `converter=1&currency=${x}`,
+    });
+}
 
