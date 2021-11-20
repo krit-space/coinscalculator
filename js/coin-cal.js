@@ -248,7 +248,7 @@ else{
     //alert("Please choose cryptocurrencies.");
     document.getElementById("errorIfNotSelected").innerHTML = "Please choose currencies..."; 
 }
-trend2(marketCapACoin,marketCapBCoin);
+trend2();
 }
 
 function copyToExpectedAmount(amount){
@@ -323,13 +323,14 @@ function trend1() {
     });
 }
 
-function trend2(marketCapACoin,marketCapBCoin) {
+function trend2() {
 
+    let x = document.querySelector(".marketCapCoin").value;
+    let y = document.querySelector(".marketCapBCoin").value;
     $.ajax({
-
           type: "POST",
           url: 'https://coinscalbridge.000webhostapp.com/trend2.php',
-          data:{coina:marketCapACoin,coinb:marketCapBCoin},
+          data:{coina:x,coinb:y},
           success:function(html) {
           }
     });
