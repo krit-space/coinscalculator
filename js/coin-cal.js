@@ -326,7 +326,7 @@ function trend1() {
 function trend2() {
 
     let x = document.querySelector(".marketCapCoin").value;
-    let y = document.querySelector(".marketCapBCoin").value;
+    let y = document.querySelector(".marketCapCoinB").value;
     $.ajax({
           type: "POST",
           url: 'https://coinscalbridge.000webhostapp.com/trend2.php',
