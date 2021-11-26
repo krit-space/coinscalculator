@@ -148,7 +148,8 @@
 
 
                     <div class="form-group">
-                      <label for="selectCoin">Currency</label> <small>(<u>Enter atleast 3 characters</u>, <a target="_blank" href="https://app.powerbi.com/view?r=eyJrIjoiNmUwZmUyNjYtMTg2MC00MDBmLWJiOWQtNzY0Y2NmM2M0ODRhIiwidCI6IjA3OTFmMDE5LTRkYzItNDU2Mi1iMWY1LTAzOTk4ZjFmOGNhNSJ9">See what others are looking at</a>)</small>
+                      <label for="selectCoin">Currency</label> <small>(<u>Enter atleast 3 characters</u>) <a  href="cal1.html">See what others are looking at! 👀</a></small>
+                      
                       <select class="selectCoin form-control" onchange="retrieveCoinDetailsInvest()" id="selectCoin"
                         name="selectCoin" style="line-height: 1.5;">
                         <option value="" style="font-size: 15px;">&#128269; Start typing...</option>
@@ -163,7 +164,7 @@
                           create: false,
                           render: {
                             option: function (item, escape) {
-                              return '<div>' +
+                              return '<div style="padding-top:5px;padding-bottom:5px">' +
                                 '<span class="name" id="id" >(' + escape(item.symbol) + ') - ' + escape(item
                                 .name) + '</span>' +
                                 '</div>';
@@ -318,7 +319,7 @@
                         render: {
                           option: function (item, escape) {
 
-                            return '<div>' +
+                            return '<div style="padding-top:5px;padding-bottom:5px">' +
                               '<span class="name" id="id" >(' + escape(item.symbol) + ') - ' + escape(item.name) +
                               '</span>' +
                               '</div>';
@@ -376,7 +377,7 @@
                         create: false,
                         render: {
                           option: function (item, escape) {
-                            return '<div>' +
+                            return '<div style="padding-top:5px;padding-bottom:5px">' +
                               '<span class="name" id="id" >(' + escape(item.symbol) + ') - ' + escape(item.name) +
                               '</span>' +
                               '</div>';
@@ -466,7 +467,7 @@
                         create: false,
                         render: {
                           option: function (item, escape) {
-                            return '<div>' +
+                            return '<div style="padding-top:5px;padding-bottom:5px">' +
                               '<span class="name" id="id" >(' + escape(item.symbol) + ') - ' + escape(item.name) +
                               '</span>' +
                               '</div>';
