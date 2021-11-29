@@ -126,26 +126,6 @@ small {
   border-radius: 50%;
 }
 
-.coin-face:nth-child(1) {
-  transform: translateZ(-0.2em) rotateY(-180deg);
-}
-
-.coin-face:nth-child(2) {
-  transform: translateZ(-0.1em);
-}
-
-.coin-face:nth-child(4) {
-  transform: translateZ(0.1em);
-}
-
-.coin-face:nth-child(5) {
-  transform: translateZ(0.2em);
-}
-
-.coin-face svg {
-  width: 100%;
-  height: 100%;
-}
 
 .coin-address {
   flex: 1;
@@ -162,101 +142,6 @@ small {
   transition-duration: 0.1s;
 }
 
-.btc {
-  max-width: 21em;
-}
-
-.btc .coin-face {
-  background: shade(#ff9900, 35%);
-}
-
-.btc .coin-face:nth-child(1),
-.btc .coin-face:nth-child(5) {
-  background: #ff9900;
-}
-
-.btc .coin-address:hover,
-.btc .coin-address:focus {
-  border-color: #ff9900;
-}
-
-.eth {
-  max-width: 23em;
-}
-
-.eth .coin-face {
-  background: shade(#6F7CBA, 35%);
-}
-
-.eth .coin-face:nth-child(1),
-.eth .coin-face:nth-child(5) {
-  background: #6F7CBA;
-}
-
-.eth .coin-address:hover,
-.eth .coin-address:focus {
-  border-color: #6F7CBA;
-}
-
-.ltc {
-  max-width: 21em;
-}
-
-.ltc .coin-face {
-  background: shade(#b5b5b5, 35%);
-}
-
-.ltc .coin-face:nth-child(1),
-.ltc .coin-face:nth-child(5) {
-  background: #b5b5b5;
-}
-
-.ltc .coin-address:hover,
-.ltc .coin-address:focus {
-  border-color: #b5b5b5;
-}
-
-.ada {
-  max-width: 21em;
-}
-
-.ada .coin-face {
-  background: shade(blue, 35%);
-}
-
-.ada .coin-face:nth-child(1),
-.ada .coin-face:nth-child(5) {
-  background: blue;
-}
-
-.ada .coin-address:hover,
-.ada .coin-address:focus {
-  border-color: blue;
-}
-
-.coin {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* height: 100vh; */
-  font-size: 1vmin;
-}
-
-.donate-crypto-box:nth-child(1) .coin {
-  -webkit-animation-delay: 0.2s;
-  animation-delay: 0.2s;
-}
-
-.donate-crypto-box:nth-child(2) .coin {
-  -webkit-animation-delay: 0.4s;
-  animation-delay: 0.4s;
-}
-
-.donate-crypto-box:nth-child(3) .coin {
-  -webkit-animation-delay: 0.6s;
-  animation-delay: 0.6s;
-}
 
 input[name="inputdatalist"] {
 
@@ -409,3 +294,40 @@ body{
   color: #fff;
   transform: translateY(-7px);
 }
+
+/*==================================================
+ * Effect 7
+ * ===============================================*/
+ .effect7
+ {
+     position:relative;
+     -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+             box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+ }
+ .effect7:before, .effect7:after
+ {
+   content:"";
+     position:absolute;
+     z-index:-1;
+     -webkit-box-shadow:0 0 20px rgba(66, 80, 212, 0.8);
+     -moz-box-shadow:0 0 20px rgba(66, 80, 212, 0.8);
+     box-shadow:0 0 20px rgba(66, 80, 212, 0.8);
+     top:0;
+     bottom:0;
+     left:10px;
+     right:10px;
+     -moz-border-radius:100px / 10px;
+     border-radius:100px / 10px;
+ }
+ .effect7:after
+ {
+   right:10px;
+     left:auto;
+     -webkit-transform:skew(8deg) rotate(3deg);
+        -moz-transform:skew(8deg) rotate(3deg);
+         -ms-transform:skew(8deg) rotate(3deg);
+          -o-transform:skew(8deg) rotate(3deg);
+             transform:skew(8deg) rotate(3deg);
+ }
+ 
