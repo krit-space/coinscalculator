@@ -236,7 +236,7 @@ document.querySelector(".MarketCapDescription").innerHTML =
                  "   <div class='d-flex'>"+
                   "      <h6 class=' align-self-center'> <a target = '_blank' href='"+link+"'> Learn more <span class='rounded-circle sp1 px-2 py-0 ml-1'> <i class='fa fa-angle-right' aria-hidden='true'></i> </span> </a> </h6> <button disabled class='btn d-flex ml-auto px-3 font-weight-bold darkWhite'>"+currentTime+" </button>"+
                   "  </div>"+
-                  "<div >"+ "<span style='font-size:10px;color:blue'><u>"+window.location+"</u></span></div>"+
+                  "<div >"+ "<span style='font-size:10px;color:blue'><u>https://coinscalculator.net</u></span></div>"+
               "  </div>"+
            " </div>"+
       "  </div>"+
