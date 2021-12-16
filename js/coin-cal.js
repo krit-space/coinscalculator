@@ -72,7 +72,7 @@ async function retrieveCoinDetailsInvest() {
         document.querySelector(".coinMcap").innerHTML = obj["market_data"]["market_cap"]["usd"] == 0 ? "N/A" : nf.format(obj["market_data"]["market_cap"]["usd"]);
 
         document.getElementById("modalbtn").innerHTML = "<a href=\"#\" data-toggle=\"modal\" data-target=\"#exampleModal\">See Exchanges ➥ </a>";
-        document.getElementById("exampleModalLabel").innerHTML = obj["name"]+" is available on "+obj["tickers"].length+" exchanges";
+        document.getElementById("exampleModalLabel").innerHTML = "On which exchanges "+obj["name"]+" is available ?";
         markets = "<table id='exchangetable' class='table table-hover'><thead><tr><th scope='col'>Exchange</th><th scope='col'>Pair</th><th scope='col'>Trust Score</th></tr></thead>";
         for( let i=0 ; i< (obj["tickers"]).length;i++ ){
             if(obj["tickers"][i]["base"].length <= 10 && obj["tickers"][i]["target"].length <= 10){
