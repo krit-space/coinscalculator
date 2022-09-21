@@ -152,7 +152,7 @@
                         $('#selectCoin').selectize({
                           valueField: 'id',
                           labelField: 'name',
-                          searchField: 'id',
+                          searchField: 'query',
                           options: [],
                           create: false,
                           render: {
@@ -165,9 +165,8 @@
                           },
                           load: function (query, callback) {
                             if (!query.length) return callback();
-                            alert( $('#selectCoin'));
                             $.ajax({
-                              url: 'https://api.coingecko.com/api/v3/search?query='+ $('#selectCoin'),
+                              url: 'https://api.coingecko.com/api/v3/search',
                               type: 'GET',
                               responseType: 'application/json',
                               data: {
@@ -324,7 +323,7 @@
                         load: function (query, callback) {
                           if (!query.length) return callback();
                           $.ajax({
-                            url: 'https://api.coingecko.com/api/v3/search?query='+searchField,
+                            url: 'https://api.coingecko.com/api/v3/search?query=',
                             type: 'GET',
                             responseType: 'application/json',
                             data: {
@@ -382,7 +381,7 @@
                         load: function (query, callback) {
                           if (!query.length) return callback();
                           $.ajax({
-                            url: 'https://api.coingecko.com/api/v3/search?query='+searchField,
+                            url: 'https://api.coingecko.com/api/v3/search?query=',
                             type: 'GET',
                             responseType: 'application/json',
                             data: {
@@ -474,7 +473,7 @@
                         load: function (query, callback) {
                           if (!query.length) return callback();
                           $.ajax({
-                            url: 'https://api.coingecko.com/api/v3/search?query='+searchField,
+                            url: 'https://api.coingecko.com/api/v3/search?query=',
                             type: 'GET',
                             responseType: 'application/json',
                             data: {
