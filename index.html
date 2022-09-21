@@ -160,8 +160,7 @@
                           render: {
                             option: function (item, escape) {
                               return '<div style="padding-top:5px;padding-bottom:5px">' +
-                                '<span class="name" id="id" >(' + escape(item.coins.symbol) + ') - ' + escape(item.coins
-                                .name) + '</span>' +
+                                '<span class="name" id="id" >(' + escape(item["coins"]["symbol"]) + ') - ' + escape(item["coins"]["symbol"]) + '</span>' +
                                 '</div>';
                             }
                           },
