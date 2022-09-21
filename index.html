@@ -159,6 +159,7 @@
                           create: false,
                           render: {
                             option: function (item, escape) {
+                              console.log(item)
                               return '<div style="padding-top:5px;padding-bottom:5px">' +
                                 '<span class="name" id="id" >(' + escape(item["coins"]["symbol"]) + ') - ' + escape(item["coins"]["symbol"]) + '</span>' +
                                 '</div>';
