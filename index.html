@@ -165,6 +165,7 @@
                           },
                           load: function (query, callback) {
                             if (!query.length) return callback();
+                            alert( $('#selectCoin'));
                             $.ajax({
                               url: 'https://api.coingecko.com/api/v3/search?query='+ $('#selectCoin'),
                               type: 'GET',
