@@ -166,7 +166,7 @@
                           load: function (query, callback) {
                             if (!query.length) return callback();
                             $.ajax({
-                              url: 'https://api.coingecko.com/api/v3/search?query='+searchField,
+                              url: 'https://api.coingecko.com/api/v3/search?query='+ $('#selectCoin'),
                               type: 'GET',
                               responseType: 'application/json',
                               data: {
