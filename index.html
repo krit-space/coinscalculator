@@ -164,7 +164,7 @@
                             }
                           },
                           load: function (query, callback) {
-                            if (!query.length) return callback();
+                            if (!query.length) {console.log(query);  return callback();}
                             $.ajax({
                               url: 'https://api.coingecko.com/api/v3/search?query='+query,
                               type: 'GET',
@@ -176,7 +176,7 @@
                                 callback();
                               },
                               success: function (res) {
-                                console.log(url);  
+                                console.log(res);  
                                 callback(res);
                               }
                             });
