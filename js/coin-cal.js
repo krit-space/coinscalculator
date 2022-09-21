@@ -310,6 +310,7 @@ async function returnWorth2() {
 
 
 function trend1() {
+    /*
     let x = document.querySelector(".selectCoin").value;
     let y = document.getElementById("inputInvestAmount").value;
     let z = document.getElementById("inputDesiredAmount").value;
@@ -321,10 +322,11 @@ function trend1() {
           success:function(html) {
           }
     });
+    */
 }
 
 function trend2() {
-
+/*
     let x = document.querySelector(".marketCapCoin").value;
     let y = document.querySelector(".marketCapCoinB").value;
     $.ajax({
@@ -334,4 +336,5 @@ function trend2() {
           success:function(html) {
           }
     });
+    */
 }
