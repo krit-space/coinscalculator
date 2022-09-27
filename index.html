@@ -81,10 +81,12 @@
       <div class="alert box effect7">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         🥳 <u>New Update</u>: You can now see a summary of what cryptos others are looking at! Head over to  <a  style="color:black;" href="usersinterest.html">Users Interest</a>
-
       </div>
+</div>
+          </div>
       <a  style="color:red;" href="#">The website is encountering some issues and users will not be able to search for coins. WILL FIX ASAP!</a>
 </div>
+
 
     <!-- First Container -->
     <div class="container-fluid bg-1 text-left">
@@ -154,21 +156,21 @@
                         $('#selectCoin').selectize({
                           valueField: 'id',
                           labelField: 'name',
-                          searchField: 'query',
+                          searchField: 'id',
                           options: [],
                           create: false,
                           render: {
                             option: function (item, escape) {
-                              console.log(item)
                               return '<div style="padding-top:5px;padding-bottom:5px">' +
-                                '<span class="name" id="id" >(' + escape(item["coins"]["symbol"]) + ') - ' + escape(item["coins"]["symbol"]) + '</span>' +
+                                '<span class="name" id="id" >(' + escape(item.symbol) + ') - ' + escape(item
+                                .name) + '</span>' +
                                 '</div>';
                             }
                           },
                           load: function (query, callback) {
-                            if (!query.length) {console.log(query);  return callback();}
+                            if (!query.length) return callback();
                             $.ajax({
-                              url: 'https://api.coingecko.com/api/v3/search?query='+query,
+                              url: 'https://coinscalbridge.000webhostapp.com/filter.php',
                               type: 'GET',
                               responseType: 'application/json',
                               data: {
@@ -178,7 +180,7 @@
                                 callback();
                               },
                               success: function (res) {
-                               // console.log(res);  
+                                console.log(res);  
                                 callback(res);
                               }
                             });
@@ -325,7 +327,7 @@
                         load: function (query, callback) {
                           if (!query.length) return callback();
                           $.ajax({
-                            url: 'https://api.coingecko.com/api/v3/search?query='+query,
+                            url: 'https://coinscalbridge.000webhostapp.com/filter.php',
                             type: 'GET',
                             responseType: 'application/json',
                             data: {
@@ -383,7 +385,7 @@
                         load: function (query, callback) {
                           if (!query.length) return callback();
                           $.ajax({
-                            url: 'https://api.coingecko.com/api/v3/search?query='+query,
+                            url: 'https://coinscalbridge.000webhostapp.com/filter.php',
                             type: 'GET',
                             responseType: 'application/json',
                             data: {
@@ -475,7 +477,7 @@
                         load: function (query, callback) {
                           if (!query.length) return callback();
                           $.ajax({
-                            url: 'https://api.coingecko.com/api/v3/search?query='+query,
+                            url: 'https://coinscalbridge.000webhostapp.com/filter.php',
                             type: 'GET',
                             responseType: 'application/json',
                             data: {
