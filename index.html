@@ -9,7 +9,12 @@
   <meta name="author" content="Sunghoon Kritesh">
 
   <link rel="icon" href="calculator.png">
-
+  <script type="text/javascript" src="https://npmcdn.com/parse/dist/parse.min.js"></script>
+  <script>
+    // Initialize Parse
+      Parse.initialize("8dDpbY6b65ejSbo2KstulT5Az7me9Lmzm9xpNHay", "iy2ogyKJjSJHsrR9xfSsmoxf0QXn1yhjOTxlznVA"); //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+      Parse.serverURL = "https://parseapi.back4app.com/";
+    </script>
 
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <script src="js/coin-cal.js"></script>
@@ -42,10 +47,32 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
   <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-  
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2175847752841571"
-     crossorigin="anonymous"></script>
 
+
+<!-- 
+  <script>
+    function read() {
+      var coins = Parse.Object.extend("coins");
+
+      var textName = "bitcoin";
+      query = new Parse.Query(coins);
+      query.fullText("itemId", textName);
+      query.find().then(function(item){
+        console.log(item.length);
+          if(item){
+            for( let i=0 ; i<item.length;i++ ){
+             console.log('Pet found successful with name: ' + item[i].get("symbol") + ' and age: ' + item[i].get("name"));
+            }
+          } else {
+             console.log("Nothing found, please try again");
+          }
+      }).catch(function(error){
+          console.log("Error: " + error.code + " " + error.message);       
+      });
+  }
+  
+  
+  </script> -->
 </head>
 
 <body>
@@ -77,16 +104,20 @@
 
 
 
+<!-- 
+<script>read()</script> -->
+
+
       <div class="container-fluid bg-1 text-left " style="padding-top: 15px ;padding-bottom: 1px ;">
       <div class="alert box effect7">
         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
         🥳 <u>New Update</u>: You can now see a summary of what cryptos others are looking at! Head over to  <a  style="color:black;" href="usersinterest.html">Users Interest</a>
       </div>
+      <div class="alert box effect7">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        😎 <u>Back from dead! Please support the website as everything is provided for free. 🥺
+      </div>
 </div>
-          </div>
-      <a  style="color:red;" href="#">The website is encountering some issues and users will not be able to search for coins. WILL FIX ASAP!</a>
-</div>
-
 
     <!-- First Container -->
     <div class="container-fluid bg-1 text-left">
@@ -151,41 +182,45 @@
                         name="selectCoin" style="line-height: 1.5;">
                         <option value="" style="font-size: 15px;">&#128269; Start typing...</option>
                       </select>
-
+                      
                       <script>
                         $('#selectCoin').selectize({
-                          valueField: 'id',
+                          valueField: 'itemId',
                           labelField: 'name',
-                          searchField: 'id',
+                          searchField: ['symbol'],
                           options: [],
                           create: false,
                           render: {
-                            option: function (item, escape) {
+                             option: function (item, escape) {
                               return '<div style="padding-top:5px;padding-bottom:5px">' +
-                                '<span class="name" id="id" >(' + escape(item.symbol) + ') - ' + escape(item
-                                .name) + '</span>' +
-                                '</div>';
+                                '<span class="name" id="' + escape(item["itemId"]) + '" >(' + escape(item["symbol"]) + ') - ' + escape(item["name"]) + '</span>' +
+                                '</div>'; 
                             }
                           },
                           load: function (query, callback) {
                             if (!query.length) return callback();
                             $.ajax({
-                              url: 'https://coinscalbridge.000webhostapp.com/filter.php',
+                              url: 'https://parseapi.back4app.com/classes/coins',
                               type: 'GET',
                               responseType: 'application/json',
+                              headers :{
+                                "X-Parse-Application-Id": "8dDpbY6b65ejSbo2KstulT5Az7me9Lmzm9xpNHay",
+                                "X-Parse-REST-API-Key" : "alZwoIdkV99ef5EyJZ7gxDJgUosVGh3a2j8756Ym" 
+                              },
                               data: {
-                                q: query,
+                               // where: "{\"$or\":[{\"symbol\":{\"$regex\": \"^"+query+"\"},{\"name\":{\"$regex\": \"^"+query+"\"}},{\"itemId\":{\"$regex\": \"^"+query+"\"}}]}",
+                                where:"{\"$or\":[{\"name\":{\"$regex\":\"^"+query+"\"}},{\"symbol\":{\"$regex\":\"^"+query+"\"}},{\"itemId\":{\"$regex\":\"^"+query+"\"}}]}",
                               },
                               error: function () {
                                 callback();
                               },
                               success: function (res) {
-                                console.log(res);  
-                                callback(res);
-                              }
-                            });
+                               // console.log(res["result"]);
+                                callback(res["results"]);
+                            }});
                           }
                         });
+
                       </script>
 
                       <div class="row ">
@@ -310,39 +345,42 @@
 
                     <script>
                       $('#marketCapCoin').selectize({
-                        valueField: 'id',
-                        labelField: 'name',
-                        searchField: 'id',
-                        options: [],
-                        create: false,
-                        render: {
-                          option: function (item, escape) {
-
-                            return '<div style="padding-top:5px;padding-bottom:5px">' +
-                              '<span class="name" id="id" >(' + escape(item.symbol) + ') - ' + escape(item.name) +
-                              '</span>' +
-                              '</div>';
-                          }
-                        },
-                        load: function (query, callback) {
-                          if (!query.length) return callback();
-                          $.ajax({
-                            url: 'https://coinscalbridge.000webhostapp.com/filter.php',
-                            type: 'GET',
-                            responseType: 'application/json',
-                            data: {
-                              q: query,
-                            },
-                            error: function () {
-                              callback();
-                            },
-                            success: function (res) {
-
-                              callback(res);
+                       
+                        valueField: 'itemId',
+                          labelField: 'name',
+                          searchField: ['symbol'],
+                          options: [],
+                          create: false,
+                          render: {
+                             option: function (item, escape) {
+                              return '<div style="padding-top:5px;padding-bottom:5px">' +
+                                '<span class="name" id="' + escape(item["itemId"]) + '" >(' + escape(item["symbol"]) + ') - ' + escape(item["name"]) + '</span>' +
+                                '</div>'; 
                             }
-                          });
-                        }
-                      });
+                          },
+                          load: function (query, callback) {
+                            if (!query.length) return callback();
+                            $.ajax({
+                              url: 'https://parseapi.back4app.com/classes/coins',
+                              type: 'GET',
+                              responseType: 'application/json',
+                              headers :{
+                                "X-Parse-Application-Id": "8dDpbY6b65ejSbo2KstulT5Az7me9Lmzm9xpNHay",
+                                "X-Parse-REST-API-Key" : "alZwoIdkV99ef5EyJZ7gxDJgUosVGh3a2j8756Ym" 
+                              },
+                              data: {
+                               // where: "{\"$or\":[{\"symbol\":{\"$regex\": \"^"+query+"\"},{\"name\":{\"$regex\": \"^"+query+"\"}},{\"itemId\":{\"$regex\": \"^"+query+"\"}}]}",
+                                where:"{\"$or\":[{\"name\":{\"$regex\":\"^"+query+"\"}},{\"symbol\":{\"$regex\":\"^"+query+"\"}},{\"itemId\":{\"$regex\":\"^"+query+"\"}}]}",
+                              },
+                              error: function () {
+                                callback();
+                              },
+                              success: function (res) {
+                               // console.log(res["result"]);
+                                callback(res["results"]);
+                            }});
+                          }
+                        });
                     </script>
 
 
@@ -369,38 +407,42 @@
                     </select>
                     <script>
                       $('#marketCapCoinB').selectize({
-                        valueField: 'id',
-                        labelField: 'name',
-                        searchField: 'id',
-                        options: [],
-                        create: false,
-                        render: {
-                          option: function (item, escape) {
-                            return '<div style="padding-top:5px;padding-bottom:5px">' +
-                              '<span class="name" id="id" >(' + escape(item.symbol) + ') - ' + escape(item.name) +
-                              '</span>' +
-                              '</div>';
-                          }
-                        },
-                        load: function (query, callback) {
-                          if (!query.length) return callback();
-                          $.ajax({
-                            url: 'https://coinscalbridge.000webhostapp.com/filter.php',
-                            type: 'GET',
-                            responseType: 'application/json',
-                            data: {
-                              q: query,
-                            },
-                            error: function () {
-                              callback();
-                            },
-                            success: function (res) {
-
-                              callback(res);
+                       
+                        valueField: 'itemId',
+                          labelField: 'name',
+                          searchField: ['symbol'],
+                          options: [],
+                          create: false,
+                          render: {
+                             option: function (item, escape) {
+                              return '<div style="padding-top:5px;padding-bottom:5px">' +
+                                '<span class="name" id="' + escape(item["itemId"]) + '" >(' + escape(item["symbol"]) + ') - ' + escape(item["name"]) + '</span>' +
+                                '</div>'; 
                             }
-                          });
-                        }
-                      });
+                          },
+                          load: function (query, callback) {
+                            if (!query.length) return callback();
+                            $.ajax({
+                              url: 'https://parseapi.back4app.com/classes/coins',
+                              type: 'GET',
+                              responseType: 'application/json',
+                              headers :{
+                                "X-Parse-Application-Id": "8dDpbY6b65ejSbo2KstulT5Az7me9Lmzm9xpNHay",
+                                "X-Parse-REST-API-Key" : "alZwoIdkV99ef5EyJZ7gxDJgUosVGh3a2j8756Ym" 
+                              },
+                              data: {
+                               // where: "{\"$or\":[{\"symbol\":{\"$regex\": \"^"+query+"\"},{\"name\":{\"$regex\": \"^"+query+"\"}},{\"itemId\":{\"$regex\": \"^"+query+"\"}}]}",
+                                where:"{\"$or\":[{\"name\":{\"$regex\":\"^"+query+"\"}},{\"symbol\":{\"$regex\":\"^"+query+"\"}},{\"itemId\":{\"$regex\":\"^"+query+"\"}}]}",
+                              },
+                              error: function () {
+                                callback();
+                              },
+                              success: function (res) {
+                               // console.log(res["result"]);
+                                callback(res["results"]);
+                            }});
+                          }
+                        });
                     </script>
 
 
@@ -461,38 +503,42 @@
 
                     <script>
                       $('#selectedCoin').selectize({
-                        valueField: 'id',
-                        labelField: 'name',
-                        searchField: 'id',
-                        options: [],
-                        create: false,
-                        render: {
-                          option: function (item, escape) {
-                            return '<div style="padding-top:5px;padding-bottom:5px">' +
-                              '<span class="name" id="id" >(' + escape(item.symbol) + ') - ' + escape(item.name) +
-                              '</span>' +
-                              '</div>';
-                          }
-                        },
-                        load: function (query, callback) {
-                          if (!query.length) return callback();
-                          $.ajax({
-                            url: 'https://coinscalbridge.000webhostapp.com/filter.php',
-                            type: 'GET',
-                            responseType: 'application/json',
-                            data: {
-                              q: query,
-                            },
-                            error: function () {
-                              callback();
-                            },
-                            success: function (res) {
-
-                              callback(res);
+                     
+                        valueField: 'itemId',
+                          labelField: 'name',
+                          searchField: ['symbol'],
+                          options: [],
+                          create: false,
+                          render: {
+                             option: function (item, escape) {
+                              return '<div style="padding-top:5px;padding-bottom:5px">' +
+                                '<span class="name" id="' + escape(item["itemId"]) + '" >(' + escape(item["symbol"]) + ') - ' + escape(item["name"]) + '</span>' +
+                                '</div>'; 
                             }
-                          });
-                        }
-                      });
+                          },
+                          load: function (query, callback) {
+                            if (!query.length) return callback();
+                            $.ajax({
+                              url: 'https://parseapi.back4app.com/classes/coins',
+                              type: 'GET',
+                              responseType: 'application/json',
+                              headers :{
+                                "X-Parse-Application-Id": "8dDpbY6b65ejSbo2KstulT5Az7me9Lmzm9xpNHay",
+                                "X-Parse-REST-API-Key" : "alZwoIdkV99ef5EyJZ7gxDJgUosVGh3a2j8756Ym" 
+                              },
+                              data: {
+                               // where: "{\"$or\":[{\"symbol\":{\"$regex\": \"^"+query+"\"},{\"name\":{\"$regex\": \"^"+query+"\"}},{\"itemId\":{\"$regex\": \"^"+query+"\"}}]}",
+                                where:"{\"$or\":[{\"name\":{\"$regex\":\"^"+query+"\"}},{\"symbol\":{\"$regex\":\"^"+query+"\"}},{\"itemId\":{\"$regex\":\"^"+query+"\"}}]}",
+                              },
+                              error: function () {
+                                callback();
+                              },
+                              success: function (res) {
+                               // console.log(res["result"]);
+                                callback(res["results"]);
+                            }});
+                          }
+                        });
                     </script>
 
 
