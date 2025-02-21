@@ -5,7 +5,7 @@ I know the cryptocurrency community is growing exponentially day by day. So, I p
 It is not a scam, it does not save any info or whatsoever.
 
 Please find the same tool on:
-https://krit-space.github.io/coin-calculator/
+https://krit-space.github.io/coinscalculator/
 
 Thanks https://api.coingecko.com/ for these awesome apis!
 
